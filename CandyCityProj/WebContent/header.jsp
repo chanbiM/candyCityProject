@@ -74,5 +74,22 @@
 						<li><a href="#">종료된 이벤트</a></li>
 						<li><a href="#">당첨자 발표</a></li>
 					</ul></li>
+
+				<%
+					MemberVO adminVo = (MemberVO) session.getAttribute("manager");
+					if (adminVo != null) {
+				%>
+				<li><a href="/member/memberList_admin.jsp">관리자용 메뉴</a>
+					<ul class="submenu">
+						<li><a href="#">유저 리스트</a></li>
+						<li><a href="#">문의글 확인</a></li>
+						<li><a href="#">신고글 확인</a></li>
+						<li><a href="#">공지사항/이벤트 작성</a></li>
+						<li><a href="#">우편 보내기</a></li>
+					</ul></li>
+			<%
+				}
+			%>
 			</ul>
+
 		</nav>

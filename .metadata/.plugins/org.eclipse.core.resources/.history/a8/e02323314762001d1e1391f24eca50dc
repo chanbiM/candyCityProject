@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+* {
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	color: #8e0047;
+	text-decoration: none;
+}
+
+.wrapper {
+	width: 1280px;
+	text-align: center;
+	display: flex;
+  	justify-content: center;
+ 	align-items: center;
+ 	min-height: 100vh;
+ 	background-color: rgb(255, 215, 230);
+}
+
+h2 {
+	margin: 50px 0;
+	font-size: 35px;
+}
+
+Form {
+	background-color: #fff0f8;
+	padding: 10px;
+	display: block;
+	margin: 0 auto;
+	
+}
+
+#signUpForm{
+	width: 800px;
+	height: 700px;
+}
+
+#loginForm {
+	width: 800px;
+	height: 500px;
+}
+
+.login_center {
+	border: 2px solid #ff59ac;
+	padding: 20px;
+}
+
+input[type=text], input[type=password], input[type=number]{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #a60053;
+}
+
+input[type=submit] {
+	background-color: #ff5bad;
+	color: #8e0047;
+	padding: 14px 20px;
+	margin: 15px 0;
+	cursor: pointer;
+	border: 0px;
+	width: 100%;
+	font-size: 15px;
+}
+
+input[type=submit]:hover {
+	background-color: #8e0047;
+	color: #fff;
+}
+
+
+input[type=reset] {
+	background-color: #bcbcbc;
+	color: #8e0047;
+	padding: 14px 20px;
+	margin: 8px 0;
+	cursor: pointer;
+	width: 100%;
+}
+
+a {
+	font-size: 12px;
+	color: #db97c7;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+Form ul{
+	display: flex;
+	width: 400px;
+    align-items: center;
+}

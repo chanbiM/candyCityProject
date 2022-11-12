@@ -26,6 +26,7 @@ public class LogoutController extends HttpServlet {
 		
 		if(vo != null) {
 			session.removeAttribute("loginOK");
+			session.removeAttribute("manager");
 			response.sendRedirect("/index.jsp");
 		}
 	}

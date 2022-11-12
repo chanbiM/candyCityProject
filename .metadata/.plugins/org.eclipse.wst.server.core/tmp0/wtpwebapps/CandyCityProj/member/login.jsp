@@ -14,8 +14,10 @@
 		<button class="widow_btn" id="-_btn">-</button>
 		<button class="widow_btn" id="x_btn">X</button>
 	</div>
+	
 	<div class="wrapper">
-
+		
+	
 		<div class="login">
 			<div class="window">
 				<button class="widow_btn" id="-_btn">-</button>

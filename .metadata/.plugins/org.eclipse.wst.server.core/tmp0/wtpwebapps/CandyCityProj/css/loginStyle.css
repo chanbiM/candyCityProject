@@ -18,6 +18,12 @@
  	background-color: rgb(255, 215, 230);
 }
 
+body {
+	width: 1280px;
+}
+.window {
+	width: 100%;
+}
 h2 {
 	margin: 50px 0;
 	font-size: 35px;
@@ -29,6 +35,11 @@ Form {
 	display: block;
 	margin: 0 auto;
 	
+}
+
+#signUpForm{
+	width: 800px;
+	height: 600px;
 }
 
 #loginForm {

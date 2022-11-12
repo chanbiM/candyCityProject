@@ -9,10 +9,11 @@
 <link rel="stylesheet" href="/css/loginStyle.css">
 </head>
 <body>
-	<div class="window">
+	<div class="window" class="back_window">
 		<button class="widow_btn" id="-_btn">-</button>
 		<button class="widow_btn" id="x_btn">X</button>
 	</div>
+	
 	<div class="wrapper">
 
 		<div class="login">
@@ -21,7 +22,7 @@
 				<button class="widow_btn" id="x_btn">X</button>
 			</div>
 
-			<form action="/signUp" method="get" id="loginForm">
+			<form action="/signUp" method="get" id="signUpForm">
 
 				<h2>Candy City Sign Up</h2>
 
@@ -49,6 +50,7 @@
 					</ul>
 				</div>
 			</form>
+		</div>
 		</div>
 </body>
 </html>

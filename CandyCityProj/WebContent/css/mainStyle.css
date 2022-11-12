@@ -79,11 +79,13 @@ header {
 
 .mainmenu {
     /* 메뉴 요소 4개 가로정렬 */
+    width: 1280px;
     display: flex;
     
     /* 중앙정렬 */
     text-align: center;
     align-items: center;
+    justify-content: center;
 
     background-color: #FF72B7;
     border-top: 2px #8e0047 solid;
@@ -93,7 +95,7 @@ header {
 }
 
 .mainmenu li {
-    width: 25%;
+    width: 20%;
     height: 50px;
 }
 
@@ -115,13 +117,14 @@ header {
     color: white;
 }
 
-.submenu {
+
+.mainmenu .submenu {
     /* 부모의 면적 + 다른 요소에 영향을 주지 않음 -> 다른 요소에 독립적*/
     position: absolute;
     /* 맨 앞으로 가져오기*/
     z-index: 100;
-
-    width: 25%;
+	width: 20%;
+	
     background-color: #FF72B7;
     color: white;
     
