@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\Users\CHANBI\Documents\GitHub\candyCityProject\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3745812199.index
+3159584039.index
+3882671916.index
+88630160.index
+1543004240.index

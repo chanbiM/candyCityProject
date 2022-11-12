@@ -1,0 +1,89 @@
+package vo;
+
+public class MemberVO {
+	private String id;
+	private String pwd;
+	private String name;
+	private String gender;
+	private int join_num;
+	private int candy;
+	private int post_num;
+	private int comment_num;
+	private boolean manager;
+	
+	public MemberVO() {
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public int getJoin_num() {
+		return join_num;
+	}
+
+	public void setJoin_num(int join_num) {
+		this.join_num = join_num;
+	}
+
+	public int getCandy() {
+		return candy;
+	}
+
+	public void setCandy(int candy) {
+		this.candy = candy;
+	}
+
+	public int getPost_num() {
+		return post_num;
+	}
+
+	public void setPost_num(int post_num) {
+		this.post_num = post_num;
+	}
+
+	public int getComment_num() {
+		return comment_num;
+	}
+
+	public void setComment_num(int comment_num) {
+		this.comment_num = comment_num;
+	}
+
+	public boolean isManager() {
+		return manager;
+	}
+
+	public void setManager(boolean manager) {
+		this.manager = manager;
+	}
+	
+}
