@@ -67,19 +67,16 @@ header {
 .minimenu {
     width: 350px;
     display: flex;
-    font-size: 17px;
     align-items: center;
     margin-right: 50px;
 }
 
 .minimenu ul {
     width: 100%;
+    font-size: 17px;
+	color: #db91bb;
     display: flex;
     justify-content: space-evenly;
-}
-
-.minimenu ul li a{
-	color: #c95899;
 }
 
 .mainmenu {

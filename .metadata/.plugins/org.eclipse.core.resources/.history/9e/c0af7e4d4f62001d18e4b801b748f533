@@ -79,7 +79,7 @@ header {
 }
 
 .minimenu ul li a{
-	color: #c95899;
+	color: #db91bb;
 }
 
 .mainmenu {

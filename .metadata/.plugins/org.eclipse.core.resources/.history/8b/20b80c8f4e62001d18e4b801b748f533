@@ -65,21 +65,16 @@ header {
 }
 
 .minimenu {
-    width: 350px;
+    width: 300px;
     display: flex;
-    font-size: 17px;
     align-items: center;
     margin-right: 50px;
 }
 
 .minimenu ul {
-    width: 100%;
+    width: 300px;
     display: flex;
     justify-content: space-evenly;
-}
-
-.minimenu ul li a{
-	color: #c95899;
 }
 
 .mainmenu {

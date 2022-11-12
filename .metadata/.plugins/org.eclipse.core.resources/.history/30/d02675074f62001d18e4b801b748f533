@@ -74,12 +74,10 @@ header {
 
 .minimenu ul {
     width: 100%;
+    
+	color: #db91bb;
     display: flex;
     justify-content: space-evenly;
-}
-
-.minimenu ul li a{
-	color: #c95899;
 }
 
 .mainmenu {

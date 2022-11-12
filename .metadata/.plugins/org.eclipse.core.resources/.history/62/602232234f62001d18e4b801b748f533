@@ -78,8 +78,8 @@ header {
     justify-content: space-evenly;
 }
 
-.minimenu ul li a{
-	color: #c95899;
+.minimenu ul li{
+	color: #db91bb;
 }
 
 .mainmenu {

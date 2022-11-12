@@ -33,12 +33,14 @@
 					%>
 					<li><a href="/member/login.jsp">로그인</a></li>
 					<li><a href="/member/insertMember.jsp">회원가입</a></li>
+					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">이용안내</a></li>
 					<%
 						} else {
 					%>
-					<li><b><%=vo.getId()%>님</b></li>
+					<li><b><a href="#"><%=vo.getId()%>님</a></b></li>
 					<li><a href="/logout"> 로그아웃 </a></li>
+					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">이용안내</a></li>
 
 					<%

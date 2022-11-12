@@ -38,7 +38,7 @@
 					<%
 						} else {
 					%>
-					<li><b><a href="#"><%=vo.getId()%>님</a></b></li>
+					<li><a href="#"><b><%=vo.getId()%>님 </a></b></li>
 					<li><a href="/logout"> 로그아웃 </a></li>
 					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">이용안내</a></li>
