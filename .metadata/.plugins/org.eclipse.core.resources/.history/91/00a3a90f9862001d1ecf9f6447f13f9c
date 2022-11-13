@@ -1,0 +1,11 @@
+package dao;
+
+import vo.MemberVO;
+import vo.PostVO;
+
+public class PostDAO {
+	public int insertPost(PostVO vo) {
+		MemberVO Membervo = (MemberVO) session.getAttribute("loginOK");
+		return 0;
+	}
+}

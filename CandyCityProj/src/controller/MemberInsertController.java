@@ -46,6 +46,11 @@ public class MemberInsertController extends HttpServlet {
 		
 		String contextPath = request.getContextPath();
 		
+		if (request.getParameter("id")== null || request.getParameter("name") == null
+				|| request.getParameter("pwd") == null || gender == null) {
+			out.print("<script>alert('비어있는 칸이 존재합니다.'); history.back(); </script>");
+		}
+		
 		result = dao.getMemberId(request.getParameter("id"));
 		
 		if(result) {
@@ -57,7 +62,7 @@ public class MemberInsertController extends HttpServlet {
 		
 		if(n > 0) {
 			out.print("<script>alert('회원가입 성공')</script>");
-			response.sendRedirect(contextPath + "/login.jsp"); 
+			response.sendRedirect(contextPath + "/member/login.jsp"); 
 		} else {
 			out.print("<script>alert('회원가입 실패'); history.back(); </script>");
 		}

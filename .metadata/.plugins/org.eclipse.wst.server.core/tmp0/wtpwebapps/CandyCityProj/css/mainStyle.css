@@ -65,18 +65,31 @@ header {
 }
 
 .minimenu {
-    width: 350px;
+    width: 1000px;
     display: flex;
     font-size: 17px;
     align-items: center;
     margin-right: 50px;
+    justify-content: flex-end;
 }
 
-.minimenu ul {
+.minimenu ul{
+    display: flex;
+}
+
+.minimenu ul li {
+    margin: 10px;
+}
+
+.minimenu ul li:hover {
+    font-weight: bold;
+}
+
+/*.minimenu ul {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-}
+}*/
 
 .minimenu ul li a{
 	color: #c95899;

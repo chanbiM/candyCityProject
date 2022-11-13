@@ -31,7 +31,7 @@ CREATE TABLE costume(
     CONSTRAINT costume_parts_CK CHECK(parts IN('head', 'body', 'shoes'))
 );
 DROP TABLE costume;
-
+DROP TABLE costume CASCADE CONSTRAINTS;
 --캐릭터
 CREATE TABLE character(
     id VARCHAR2(20),
@@ -44,7 +44,7 @@ CREATE TABLE character(
     CONSTRAINT character_body_FK FOREIGN KEY(body) REFERENCES costume(costume_code),
     CONSTRAINT character_shoes_FK FOREIGN KEY(shoes) REFERENCES costume(costume_code)
 );
-
+DROP TABLE character CASCADE CONSTRAINTS;
 -- 보유 의상
 CREATE TABLE holding_costume (
     id VARCHAR2(20),
@@ -52,6 +52,7 @@ CREATE TABLE holding_costume (
     CONSTRAINT holding_costume_id_FK FOREIGN KEY(id) REFERENCES member(id),
     CONSTRAINT holding_costume_code_FK FOREIGN KEY(costume_code) REFERENCES costume(costume_code)
 );
+DROP TABLE holding_costume CASCADE CONSTRAINTS;
 
 --게시글
 CREATE TABLE post(
@@ -60,9 +61,13 @@ CREATE TABLE post(
     write_date DATE NOT NULL,
     title VARCHAR2(30) NOT NULL,
     contents VARCHAR2(500) NOT NULL,
+    comment_o CHAR(1),
     CONSTRAINT post_code_PK PRIMARY KEY(post_code),
     CONSTRAINT post_id_FK FOREIGN KEY(id) REFERENCES member(id)
 );
+
+DROP TABLE post CASCADE CONSTRAINTS;
+DROP TABLE post;
 
 --댓글
 CREATE TABLE post_comment(
@@ -75,6 +80,7 @@ CREATE TABLE post_comment(
     CONSTRAINT comment_post_FK FOREIGN KEY(post_code) REFERENCES post(post_code),
     CONSTRAINT comment_id_FK FOREIGN KEY(id) REFERENCES member(id)
 );
+DROP TABLE post_comment CASCADE CONSTRAINTS;
 
 --오늘 방문자
 CREATE SEQUENCE vist_today_seq;
@@ -85,6 +91,7 @@ CREATE TABLE vist_today (
     CONSTRAINT vist_today_vist_num_PK PRIMARY KEY(vist_num),
     CONSTRAINT vist_today_id_FK FOREIGN KEY(id) REFERENCES member(id)
 );
+DROP TABLE vist_today CASCADE CONSTRAINTS;
 
 --관리자 공지사항 (이벤트, 공지사항)
 CREATE TABLE manager_notice (
@@ -98,6 +105,8 @@ CREATE TABLE manager_notice (
     CONSTRAINT manager_notice_type_CK CHECK(type IN('E', 'N'))
 );
 
+DROP TABLE manager_notice CASCADE CONSTRAINTS;
+
 --우편함(보면 지워지게)
 CREATE TABLE mail(
     mail_code VARCHAR2(20),
@@ -107,7 +116,7 @@ CREATE TABLE mail(
     CONSTRAINT mail_id_FK FOREIGN KEY(id) REFERENCES member(id)
 );
 
-
+DROP TABLE mail CASCADE CONSTRAINTS;
 --신고
 
 --문의

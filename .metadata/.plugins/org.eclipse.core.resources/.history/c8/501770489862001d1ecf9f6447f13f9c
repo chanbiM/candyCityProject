@@ -1,0 +1,13 @@
+package dao;
+
+import javax.servlet.http.HttpSession;
+
+import vo.MemberVO;
+import vo.PostVO;
+
+public class PostDAO {
+	public int insertPost(PostVO vo, MemberVO memberVo) {
+		
+		return 0;
+	}
+}

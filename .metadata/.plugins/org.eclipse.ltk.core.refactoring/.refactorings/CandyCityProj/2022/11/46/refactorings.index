@@ -1,0 +1,6 @@
+1668261154927	Move 'homepi' to 'member'
+1668261161356	Move 'character' to 'member'
+1668261173492	Move 'event' to 'admin'
+1668261176551	Move 'eventInsert.jsp' to 'event'
+1668261183997	Move 'post' to 'member'
+1668262197037	Rename type 'postINsertController'

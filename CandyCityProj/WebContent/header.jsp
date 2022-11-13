@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Candy City</title>
-<link rel="stylesheet" href="./css/mainStyle.css">
+<link rel="stylesheet" href="/css/mainStyle.css">
 <script src="./js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
@@ -20,7 +20,7 @@
 		<header>
 			<!-- 로고 -->
 			<div class="logo">
-				<a href="./index.jsp"><img alt="로고" src="./images/logo.png"></a>
+				<a href="/index.jsp"><img alt="로고" src="/images/logo.png"></a>
 			</div>
 
 			<!-- 기타 메뉴바 -->
@@ -38,7 +38,7 @@
 					<%
 						} else {
 					%>
-					<li><b><a href="#"><%=vo.getId()%>님</a></b></li>
+					<li><a href="#"><%=vo.getId()%>님</a></li>
 					<li><a href="/logout"> 로그아웃 </a></li>
 					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">이용안내</a></li>
