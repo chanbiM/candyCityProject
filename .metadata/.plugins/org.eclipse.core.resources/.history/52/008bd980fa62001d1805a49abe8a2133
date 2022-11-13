@@ -1,0 +1,24 @@
+package dao;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import common.JdbcUtill;
+import vo.MemberVO;
+import vo.PostVO;
+
+public class PostDAO {
+	//게시글 작성
+	public int insertPost(PostVO postVo, MemberVO memberVo) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into post values('post-' || post_seq.nextval,?,SYSDATE,?,?,?,'')";
+	
+		conn = JdbcUtill.getConnection();
+		
+		return n;
+	}
+}

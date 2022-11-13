@@ -15,6 +15,14 @@ public class PostVO {
 	private String title;
 	private String contents;
 	private String commentO;
+	private String postOption;
+	
+	public String getPostOption() {
+		return postOption;
+	}
+	public void setPostOption(String postOption) {
+		this.postOption = postOption;
+	}
 	public PostVO() {
 		// TODO Auto-generated constructor stub
 	}

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/postStyle.css">
         <!-- 게시글 작성-->
         <br>
-        <form action="/postInsert" method="post">
+        <form action="/postInsert" method="get">
             <div class="top">
                 <h2>게시글 작성</h2>
                 
@@ -15,8 +15,8 @@
                         </li>
                         <li>
                             <select name="postOption">
-                                <option value="basic">전체 게시글</option>
-                                <option value="secret">비밀 게시글</option>
+                                <option value="B">전체 게시글</option>
+                                <option value="S">비밀 게시글</option>
                             </select>
                         </li>
                         <li>
@@ -35,6 +35,6 @@
             <br>
             <hr class="title-line">
             
-            <textarea placeholder="내용을 입력해주세요." name="post"></textarea>
+            <textarea placeholder="내용을 입력해주세요." name="contents"></textarea>
         </form>
 <%@ include file="/footer.jsp" %>

@@ -55,19 +55,29 @@ CREATE TABLE holding_costume (
 DROP TABLE holding_costume CASCADE CONSTRAINTS;
 
 --게시글
+CREATE SEQUENCE post_seq;
 CREATE TABLE post(
-    post_code VARCHAR2(20),
+    post_code VARCHAR2(20), --
     id VARCHAR2(20), --쓴사람
     write_date DATE NOT NULL,
     title VARCHAR2(30) NOT NULL,
     contents VARCHAR2(500) NOT NULL,
     comment_o CHAR(1),
+    update_date DATE,
+    post_type CHAR(1),
     CONSTRAINT post_code_PK PRIMARY KEY(post_code),
-    CONSTRAINT post_id_FK FOREIGN KEY(id) REFERENCES member(id)
+    CONSTRAINT post_id_FK FOREIGN KEY(id) REFERENCES member(id),
+    CONSTRAINT post_comment_o_CK CHECK(comment_o IN('O', NULL)),
+    CONSTRAINT post_type_CK CHECK(post_type IN('S', 'B'))
 );
+
+insert into post values('post-'||post_seq.nextval,'chanbi',SYSDATE,'더럽게 안되네','퉤!','O','','B');
+
+select * from post;
 
 DROP TABLE post CASCADE CONSTRAINTS;
 DROP TABLE post;
+DROP SEQUENCE post_seq;
 
 --댓글
 CREATE TABLE post_comment(
