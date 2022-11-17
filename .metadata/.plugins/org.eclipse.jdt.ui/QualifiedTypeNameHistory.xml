@@ -5,7 +5,8 @@
 <fullyQualifiedTypeName name="dao.MemberDAO"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="vo.PostVO"/>
 <fullyQualifiedTypeName name="vo.MemberVO"/>
+<fullyQualifiedTypeName name="vo.PostVO"/>
+<fullyQualifiedTypeName name="dao.PostDAO"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>

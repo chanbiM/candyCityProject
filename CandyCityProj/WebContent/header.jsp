@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Candy City</title>
 <link rel="stylesheet" href="/css/mainStyle.css">
-<script src="./js/jquery-3.1.1.min.js"></script>
+<script src="/js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -33,7 +33,6 @@
 					%>
 					<li><a href="/member/login.jsp">로그인</a></li>
 					<li><a href="/member/insertMember.jsp">회원가입</a></li>
-					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">이용안내</a></li>
 					<%
 						} else {

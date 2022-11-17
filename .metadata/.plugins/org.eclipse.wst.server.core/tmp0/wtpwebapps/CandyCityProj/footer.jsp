@@ -5,7 +5,7 @@
             <!-- 하단로고 -->
             <div>
                 <a href="#" class="logo">
-                    <img src="./images/logo.png" alt="로고">
+                    <img src="/images/logo.png" alt="로고">
                 </a>
             </div>
             <!-- 카피라이트 -->
@@ -15,13 +15,13 @@
             <!-- SNS -->
             <div>
                 <ul class="sns">
-                    <li><a href="#"><img src="./images/sns-youtube-on.svg" alt="유튜브"></a></li>
-                    <li><a href="#"><img src="./images/sns-facebook-on.svg" alt="페이스북"></a></li>
-                    <li><a href="#"><img src="./images/sns-instagram-on.svg" alt="인스타"></a></li>
+                    <li><a href="#"><img src="/images/youtube.png" alt="유튜브" height="40"></a></li>
+                    <li><a href="#"><img src="/images/facebook.png" alt="페이스북" height="40"></a></li>
+                    <li><a href="#"><img src="/images/kakao.png" alt="카카오톡" height="40"></a></li>
                 </ul>
             </div>
         </footer>
     </div>
-	<script src="./js/script.js"></script>
+	<script src="/js/script.js"></script>
 </body>
 </html>
