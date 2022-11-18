@@ -41,13 +41,10 @@ public class PostInsertController extends HttpServlet {
 		PostVO postVo = new PostVO();
 		PostDAO dao = new PostDAO();
 		int result = 0;
-		String postType = request.getParameter("postType");
 		
 		postVo.setTitle(request.getParameter("title"));
 		postVo.setContents(request.getParameter("contents"));
 		postVo.setCommentO(request.getParameter("comment"));
-		postVo.setPostType(postType);
-		
 		
 		if(request.getParameter("title") == null){
 			out.print("<script>alert('제목을 입력해주세요.'); history.back(); </script>");
@@ -63,7 +60,7 @@ public class PostInsertController extends HttpServlet {
 					
 					if(result > 0) {
 						out.print("<script>alert('게시글 작성 성공')</script>");
-						response.sendRedirect(contextPath + "/member/homepi/miniHomeList.jsp"); 
+						response.sendRedirect(contextPath + "/GetPostList?id="+memberVo.getId()); 
 					} else {
 						out.print("<script>alert('게시글 작성 실패'); history.back(); </script>");
 					}

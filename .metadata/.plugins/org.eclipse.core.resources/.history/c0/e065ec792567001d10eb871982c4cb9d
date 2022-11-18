@@ -1,0 +1,66 @@
+<%@page import="vo.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+<%
+	MemberVO homepiList = (MemberVO) request.getAttribute("homepiUser");
+%>
+	<!--미니홈피 목록-->
+			<table id="post_list">
+				<tr>
+					<th class="number">
+						번호
+					</th>
+
+					<th class="name">
+						닉네임
+					</th>
+
+					<th class="joinDate">
+						가입날짜
+					</th>
+					
+					<th class="loginDate">
+						마지막 로그인
+					</th>
+				</tr>
+
+				<%
+					int num = 1;
+					for(MemberVO data : postData) {
+				%>
+					<tr>
+						<td>
+							<a href=""><%= num %></a>
+						</td>
+						<td>
+							<a href=""><%= data.getTitle() %></a>
+						</td>
+						<td>
+						<%
+                				if(data.getUpdateDate() == null) {
+                			%>
+                				<a href=""><%= data.getWriteDate() %></a>
+                			<%
+                				} else {
+                			%>
+                					<a href=""><%= data.getUpdateDate() %></a>
+                			<%
+                				}
+                			%>
+						</td>
+				</tr>
+					<% num++; %>
+				<% } %>
+				
+				
+			</table>
+</body>
+</html>

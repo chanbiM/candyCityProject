@@ -6,13 +6,12 @@ body::-webkit-scrollbar {
     display: none;
 }
 .wrapper {
-    height: 1200px;
-    
+	min-height: 1100px;
 }
 
 .member_info {
     width: 95%;
-    background-color: rgb(223, 166, 187);
+    background-color: #fecddd;
     height: 150px;
     margin: auto;
     padding: 20px;
@@ -61,7 +60,7 @@ input::placeholder {
 .character_info {
     float: left;
     width: 300px;
-    background-color: rgb(223, 166, 187);
+    background-color: #fecddd;
     height: 470px;
     margin: 15px;
     padding: 20px;
@@ -128,7 +127,7 @@ input[type="text"]{
     border: 2px solid #943464;
 
     width: 66%;
-    height: 500px;
+    height: 750px;
     display: inline-block;
     padding: 20px;
 }
@@ -155,3 +154,12 @@ input[type="text"]{
     transition: background-color 0.2s, color 0.2s;
 }
 
+hr {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+
+	height : 1px;
+    border: 0;
+	background-color : #811b4e;
+}

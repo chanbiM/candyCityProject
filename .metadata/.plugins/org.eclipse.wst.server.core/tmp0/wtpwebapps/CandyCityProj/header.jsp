@@ -53,19 +53,19 @@
 		<!-- 메뉴바 -->
 		<nav>
 			<ul class="mainmenu">
-				<li><a href="/homepi/mini_homeList.jsp">미니홈피</a>
+				<li><a href="/getHomepiList">미니홈피</a>
 					<ul class="submenu">
 					<%
 						if (vo == null) {
 					%>
 						<li><a href="/member/login.jsp">내 미니홈피</a></li>
-						<li><a href="/homepi/mini_homeList.jsp">미니홈피 목록</a></li>
+						<li><a href="/getHomepiList">미니홈피 목록</a></li>
 					<%
 						} else {
 					%>
 						
 						<li><a href="/GetHomepi?id=<%= vo.getId() %>">내 미니홈피</a></li>
-						<li><a href="/homepi/mini_homeList.jsp">미니홈피 목록</a></li>
+						<li><a href="/getHomepiList">미니홈피 목록</a></li>
 					<%
 						}
 					%>

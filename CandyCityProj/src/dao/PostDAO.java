@@ -3,7 +3,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JdbcUtill;
 import vo.MemberVO;
@@ -16,7 +18,7 @@ public class PostDAO {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into post values('post-'||post_seq.nextval,?,SYSDATE,?,?,?,'',?)";
+		String sql = "insert into post values('post-'||post_seq.nextval,?,SYSDATE,?,?,?,'',NULL)";
 	
 		conn = JdbcUtill.getConnection();
 		
@@ -27,7 +29,6 @@ public class PostDAO {
 			pstmt.setString(2, postVo.getTitle());
 			pstmt.setString(3, postVo.getContents());
 			pstmt.setString(4, postVo.getCommentO());
-			pstmt.setString(5, postVo.getPostType());
 			
 	
 			n = pstmt.executeUpdate();
@@ -61,5 +62,136 @@ public class PostDAO {
 				JdbcUtill.close(conn, pstmt);
 			}
 			return n;
+		}
+		
+		public ArrayList<PostVO> getRepresentativePost(String id){
+			ArrayList<PostVO> list = new ArrayList<PostVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select ROWNUM, a.* " + 
+					"from (SELECT post_code, id, write_date, title, contents, comment_o, update_date, post_type " + 
+					"FROM post " + 
+					"where id=?" + 
+					"ORDER BY post_code desc) a " + 
+					"where ROWNUM <= 1";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PostVO vo = new PostVO();
+					vo.setPostCode(rs.getString("post_code"));
+					vo.setId(rs.getString("id"));
+					vo.setWriteDate(rs.getDate("write_date"));
+					vo.setTitle(rs.getString("title"));
+					vo.setContents(rs.getString("contents"));
+					vo.setCommentO(rs.getString("comment_o"));
+					vo.setUpdateDate(rs.getDate("update_date"));
+					vo.setPostType(rs.getString("post_type"));
+					
+					list.add(vo);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("테이블 데이터 조회 실패");
+			} finally {
+				 JdbcUtill.close(conn, pstmt, rs);
+			}
+			return list;
+		}
+		
+		public ArrayList<PostVO> getPost(String id){
+			ArrayList<PostVO> list = new ArrayList<PostVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from post where id=? ORDER BY post_code desc";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PostVO vo = new PostVO();
+					vo.setPostCode(rs.getString("post_code"));
+					vo.setId(rs.getString("id"));
+					vo.setWriteDate(rs.getDate("write_date"));
+					vo.setTitle(rs.getString("title"));
+					vo.setContents(rs.getString("contents"));
+					vo.setCommentO(rs.getString("comment_o"));
+					vo.setUpdateDate(rs.getDate("update_date"));
+					vo.setPostType(rs.getString("post_type"));
+					
+					list.add(vo);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("테이블 데이터 조회 실패");
+			} finally {
+				 JdbcUtill.close(conn, pstmt, rs);
+			}
+			return list;
+		}
+		
+		//검색
+		public ArrayList<PostVO> getSearchHomepiPost(String key, MemberVO homepiData){
+			ArrayList<PostVO> list = new ArrayList<PostVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql;
+			String str = "%" + key + "%";
+			
+			conn = JdbcUtill.getConnection();
+			
+
+			try {
+				if (key.equals("all")) {
+					sql = "select * from post where id=? order by 1 desc";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, homepiData.getId());
+					
+				} else {
+					sql = "select * from post where id=? AND (title like ? OR contents like ?) order by 1 desc";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, homepiData.getId());
+					pstmt.setString(2, str);
+					pstmt.setString(3, str);
+				}
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PostVO vo = new PostVO();
+					vo.setPostCode(rs.getString("post_code"));
+					vo.setId(rs.getString("id"));
+					vo.setWriteDate(rs.getDate("write_date"));
+					vo.setTitle(rs.getString("title"));
+					vo.setContents(rs.getString("contents"));
+					vo.setCommentO(rs.getString("comment_o"));
+					vo.setUpdateDate(rs.getDate("update_date"));
+					vo.setPostType(rs.getString("post_type"));
+					
+					list.add(vo);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("테이블 데이터 조회 실패");
+			} finally {
+				 JdbcUtill.close(conn, pstmt, rs);
+			}
+			
+			return list;
 		}
 }

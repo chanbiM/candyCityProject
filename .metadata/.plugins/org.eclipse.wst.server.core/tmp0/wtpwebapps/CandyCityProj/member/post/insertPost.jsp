@@ -14,12 +14,6 @@
                             <input type="radio" value="O" name="comment" checked>댓글허용
                         </li>
                         <li>
-                            <select name="postOption">
-                                <option value="B">전체 게시글</option>
-                                <option value="S">비밀 게시글</option>
-                            </select>
-                        </li>
-                        <li>
                             <input type="reset" value="삭제">
                             
                         </li>

@@ -15,6 +15,7 @@ public class MemberVO {
 	private int commentNum;
 	private String manager;
 	private String introduce;
+	
 	private Date joinDate;
 	private Date loginDate;
 	

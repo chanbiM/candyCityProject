@@ -5,10 +5,6 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
-.wrapper {
-    height: 1500px;
-    
-}
 
 .top {
     width: 100%;

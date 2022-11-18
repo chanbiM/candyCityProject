@@ -21,6 +21,7 @@
 
 .wrapper {
     width: 1280px;
+    min-height: 1100px;
     margin: 0 auto;
     background-color: rgb(255, 215, 230);
 }

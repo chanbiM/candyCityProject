@@ -958,3 +958,20 @@ Java Model Exception: Java Model Status [Unknown javadoc format for logging [in 
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 !SUBENTRY 1 org.eclipse.jdt.core 4 1009 2022-11-18 11:34:52.914
 !MESSAGE Unknown javadoc format for logging [in logging.class [in sun.util.logging.resources [in C:\Program Files\Java\jdk1.8.0_321\jre\lib\rt.jar]]]
+!SESSION 2022-11-18 14:59:28.967 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=1.8.0_321
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-11-18 15:01:27.497
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\CHANBI'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2022-11-18 15:05:22.175
+!MESSAGE No repository found at http://download.eclipse.org/technology/m2e/releases/.

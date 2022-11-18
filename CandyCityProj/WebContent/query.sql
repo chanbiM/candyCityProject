@@ -24,7 +24,7 @@ insert into member values('chanbi','임찬비',NULL, 'F', 'cksql0713', join_memb
 delete member;
 
 select * from member;
-update member set login_date=SYSDATE where id='chanbi';
+update member set post_num=0 where id='chanbi';
 
 --의상
 CREATE TABLE costume(
@@ -75,6 +75,9 @@ CREATE TABLE post(
     CONSTRAINT post_comment_o_CK CHECK(comment_o IN('O', NULL)),
     CONSTRAINT post_type_CK CHECK(post_type IN('S', 'B'))
 );
+
+delete post;
+select * from post;
 
 --타인이 볼떄
 select * from post where id='chanbi' AND (title like '%더럽%' OR contents like '%더럽%') AND post_type='B' order by 1 desc;
@@ -142,12 +145,6 @@ DROP TABLE mail CASCADE CONSTRAINTS;
 --문의
 
 -- 랭킹(뷰)  
-
-SELECT id, name, post_num,
-RANK () OVER (order by post_num desc) 순위
-FROM member
-ORDER BY 순위
-
 select ROWNUM, a.*
 from (SELECT id, name, post_num, RANK()OVER (order by post_num desc) rk
 		FROM member
@@ -162,3 +159,16 @@ SELECT id, name, post_num, RANK()OVER (order by post_num desc)
 update member set post_num=post_num+1 where id='chanbi';
 
 SELECT id, name, post_num, RANK () OVER(order by post_num desc) alias(rk) FROM member where rk >= 4 ORDER BY rk;
+
+
+--대표 게시글
+select table.* from table where condition order by table.col1
+    
+select ROWNUM, a.*
+from (SELECT post_code, id, write_date, title, contents, comment_o, update_date, post_type
+		FROM post
+		where id='chanbi'
+		ORDER BY post_code desc) a
+where ROWNUM <= 1;
+
+select * from post where id='chanbi' ORDER BY post_code desc;
