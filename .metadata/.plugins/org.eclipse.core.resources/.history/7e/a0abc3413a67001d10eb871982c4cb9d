@@ -1,0 +1,73 @@
+<%@page import="dao.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp" %>
+	<h2>마이페이지</h2>
+		<div class="content">
+			<div class="myInfo">
+
+			<form action="">
+				<table class="info">
+					<tr>
+						<th rowspan="4">내정보</th>
+						<td>아이디 </td>
+						<td><input type="text" readonly value="<%= vo.getId() %>" name="id" class="infoText"></td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td><input type="text" value="<%= vo.getName() %>" name="name" class="infoText"></td>
+						<td><input type="submit" value="변경" class="updatebtn"></td>
+					</tr>
+					<tr><td>성별</td>
+						<td><input type="text" readonly value=<%= vo.getGender() %> class="infoText"></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td></td>
+						<td id="open_popup">변경</td>
+					</tr>
+					<tr>
+						<td colspan="4"><hr></td>
+					<tr>
+					
+					<tr>
+						<th rowspan="5">활동정보</th>
+					</tr>
+					<tr>
+						<td>가입날짜</td>
+						<td><%= vo.getJoinDate() %></td>
+						<td><a href="">회원 탈퇴</a></td>
+					</tr>
+					<tr>
+						<td>마지막 로그인</td>
+						<td><%= vo.getLoginDate() %></td>
+					</tr>
+					
+					
+					<tr>
+						<td>게시글 수</td>
+						<td><%= vo.getPostNum() %></td>
+						<td><a href="">전체삭제</a></td>
+					</tr>
+					<tr>
+						<td>댓글 수</td>
+						<td><%= vo.getJoinDate() %></td>
+						<td><a href="">전체삭제</a></td>
+					</tr>
+				</table>
+			</form>
+				
+			</div>
+			
+			<div id="popup_back">
+				<div id="popup">
+					<form action="">
+						<h3>비밀번호 변경</h3> <hr>
+						현재 비밀번호: <input type="password" name="password"><br>
+						바꿀 비밀먼호: <input type="password" name="newPassword"><br>
+						<button id="popup_close">닫기</button> <input type="submit" value="변경">
+					</form>
+				</div>
+			</div>
+		</div>
+<%@ include file="/footer.jsp" %>

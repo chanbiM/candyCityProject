@@ -251,6 +251,83 @@ public class MemberDAO {
 		}
 		return list;
 	}
+	
+	//닉네임 수정
+	public int updateName(String id, String name) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update member set name=? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+
+	public int updatePwd(String id, String newPassword) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update member set pwd=? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPassword);
+			pstmt.setString(2, id);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+
+	public int deleteMember(String id) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		//String commentSql = "delete post_comment where id=?"
+		String postSql = "delete post where id=?";
+		String sql = "delete member where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(postSql);
+			pstmt.setString(1, id);
+			
+			n = pstmt.executeUpdate();
+			JdbcUtill.close(conn, pstmt);
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				n = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+	
 }
 
 	

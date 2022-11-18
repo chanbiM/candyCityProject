@@ -62,12 +62,23 @@ $(".mainmenu > li").mouseleave(function (){ // 마우스가 떠나면
     $(".submenu").stop().slideUp(); // slideUp = 올라가는 애니메이션
 })
 
-// 첫번째 공지사항 요소 클릭시
-$("#open_popup").click(function(){
-    $("#popup_back").show()
+
+// 비밀번호 변경 팝업
+$(".open_popup").click(function(){
+    $(".popup_back").show()
 })
 
 // 팝업의 '닫기' 버튼 클릭시
-$("#popup_close").click(function(){
-    $("#popup_back").hide()
+$(".popup_close").click(function(){
+    $(".popup_back").hide()
+})
+
+//탈퇴 팝업
+$(".open_popup_del").click(function(){
+    $(".popup_back_del").show()
+})
+
+// 팝업의 '닫기' 버튼 클릭시
+$(".popup_close").click(function(){
+    $(".popup_back_del").hide()
 })

@@ -37,16 +37,20 @@
 				%>
 					<tr>
 						<td>
-							<a href=""><%= num %></a>
+							<a href="/GetHomepi?id=<%= data.getId() %>"><%= num %></a>
 						</td>
 						<td>
-							<a href=""><%= data.getName() %></a>
+							<a href="/GetHomepi?id=<%= data.getId() %>"><%= data.getName() %></a>
 						</td>
 						<td>
-							<a href=""><%= data.getJoinDate() %></a>
+							<a href="/GetHomepi?id=<%= data.getId() %>"><%= data.getJoinDate() %></a>
 						</td>
 						<td>
-							<a href=""><%= data.getLoginDate() %></a>
+							<% if(data.getLoginDate() == null){ %>
+								<a href="/GetHomepi?id=<%= data.getId() %>">로그인 한 적 없음</a>
+							<% } else {%>
+								<a href="/GetHomepi?id=<%= data.getId() %>"><%= data.getLoginDate() %></a>
+							<% } %>
 						</td>
 				</tr>
 					<% num++; %>

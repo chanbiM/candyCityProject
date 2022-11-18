@@ -31,7 +31,6 @@ public class LoginController extends HttpServlet {
 		
 		id = request.getParameter("id");
 		pwd = request.getParameter("pwd");
-		System.out.println(request.getParameter("pwd"));
 		
 		MemberDAO dao = new MemberDAO();
 		result = dao.getMemberPwd(id, pwd);

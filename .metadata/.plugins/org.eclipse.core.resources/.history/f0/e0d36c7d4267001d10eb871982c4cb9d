@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="/css/postStyle.css">
+        <!-- 게시글 작성-->
+        <br>
+        <form action="/postInsert" method="get">
+            <div class="top">
+                <h2>게시글 작성</h2>
+                
+                <div class="right">
+                    <ul>
+                        <li>
+                            <input type="radio" value="O" name="comment" checked>댓글허용
+                        </li>
+                        
+                        <li>
+                            <input type="radio" value="E" name="type" checked> 이벤트
+                            <input type="radio" value="E" name="type" > 이벤트
+                        </li>
+                        <li>
+                            <input type="reset" value="삭제">
+                            
+                        </li>
+                        <li>
+                            <input type="submit" value="등록">
+                        </li>
+                    </ul>        
+                </div>
+                
+            </div>
+            <hr>
+            <input type="text" placeholder="제목을 입력해주세요." name="title">
+            <br>
+            <hr class="title-line">
+            
+            <textarea placeholder="내용을 입력해주세요." name="contents"></textarea>
+        </form>
+<%@ include file="/footer.jsp" %>

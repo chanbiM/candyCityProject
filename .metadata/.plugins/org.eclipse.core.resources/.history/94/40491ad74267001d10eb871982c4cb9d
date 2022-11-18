@@ -1,0 +1,131 @@
+body {
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    height: 50px;
+    margin: 20px;
+    margin-left: 40px;
+}
+
+h2 {
+    width: 200px;
+}
+
+.right {
+    width: 1000px;
+    
+}
+.right ul {
+    display: flex;
+    justify-content: right;
+}
+
+.right ul li {
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
+    align-items: center;
+}
+
+input[type="radio"] {
+    accent-color:#5d1639;
+    margin: 5px;
+}
+
+input[type="text"]{
+  width: 1200px;
+  margin: 20px;
+  margin-top: 30px;
+  height: 40px;
+  padding: 10px;
+  margin-left: 30px;
+
+  font-size: 35px;
+  /*border: #811b4e 2px solid;*/
+  border: 0px;
+  background-color: rgb(255, 215, 230);
+}
+
+input::placeholder {
+    color: #7e3b5d;
+}
+
+hr {
+    width: 1200px;
+    text-align: center;
+    margin: auto;
+
+	height : 1px;
+    border: 0;
+	background-color : #811b4e;
+}
+.title-line {
+    background-color : #dba2bf;
+}
+input:focus {outline: none;}
+
+textarea {
+    margin: 30px;
+    margin-left: 40px;
+    width: 1150px;
+    height: 600px;
+    background-color : rgb(255, 215, 230);
+    padding: 20px;
+    font-size: 25px;
+    border: #8a4c6b 1px solid;
+}
+
+textarea::placeholder {
+    color: #8e717f;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+input[type="submit"] {
+    background-color: #c64887;
+    width: 100px;
+    height: 40px;
+    color: #ffffff;
+    border: 2px #9a4f74 solid;
+    border-radius: 5px;
+}
+
+input[type="reset"] {
+    background-color: #ffffff;
+    width: 100px;
+    height: 40px;
+    color: #943464;
+    border: 2px #9a4f74 solid;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #943464;
+    color: #d5c8c8;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+input[type="reset"]:hover {
+    background-color: #c0abb5;
+    color: rgb(117, 59, 88);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+select {
+    width: 150px;
+    height: 40px;
+    background-color: rgb(255, 215, 230);
+    border: 1px solid #9a4f74;
+    padding: 5px;
+}

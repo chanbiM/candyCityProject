@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.MemberDAO;
 import dao.PostDAO;
 import vo.MemberVO;
 import vo.PostVO;
@@ -60,6 +61,8 @@ public class PostInsertController extends HttpServlet {
 					
 					if(result > 0) {
 						out.print("<script>alert('게시글 작성 성공')</script>");
+						session.setAttribute("loginOK", memberVo);
+						
 						response.sendRedirect(contextPath + "/GetPostList?id="+memberVo.getId()); 
 					} else {
 						out.print("<script>alert('게시글 작성 실패'); history.back(); </script>");

@@ -20,6 +20,7 @@ h2 {
 
 .right {
     width: 1000px;
+    margin-right: 50px;
 }
 .right ul {
     display: flex;

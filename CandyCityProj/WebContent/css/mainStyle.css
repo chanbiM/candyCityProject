@@ -343,8 +343,65 @@ footer img {
     width: 30px;
 }
 
+
+.copyright {
+	font-size: 20px;
+}
+
+.info {
+	width: 100%;
+	margin-left: 20px; 
+	height: 700px;
+}
+
+.infoText {
+	width: 300px;
+	height: 30px;
+	font-size: 23px;
+	border: 0px;
+	background-color: #ffeaf3;
+	text-align: center;
+}
+
+.info th {
+	width: 250px;
+	margin: 5px;
+	font-size: 30px;
+}
+
+.info td {
+	width: 300px;
+	margin: 10px;
+	font-size: 25px;
+	text-align: center;
+}
+
+.updatebtn {
+	border: 0px;
+	background-color: rgb(255, 215, 230);
+	font-size: 25px;
+	
+}
+
+input:focus {outline: none;}
+
+hr {
+	margin: 30px;
+	width: 90%;
+	margin: auto;
+
+	height : 1px;
+    border: 0;
+	background-color : #811b4e;
+	
+}
+
+h2 {
+	margin: 30px;
+}
+
 /* 팝업의 배경 */
-#popup_back {
+.popup_back {
     /* 기본적으로 가려짐 */
     display: none;
 
@@ -358,16 +415,18 @@ footer img {
     height: 100%;
 
     /* 검정색 배경(0,0,0,)에서 0.8로 투명도 설정*/
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    
 }
 
 /* 팝업 본체 */
-#popup{
+.popup{
     position: relative;
 
     /* 팝업 창의 가로 세로*/
-    width:400px;
-    height:200px;
+    width:500px;
+    height:300px;
 
     /* 배경 면적의 top 50%, left 50% 위치로 이동 */
     top:50%;
@@ -379,16 +438,79 @@ footer img {
     background:#fff;
     padding: 20px;
 }
+
+
 /* 팝업 버튼 */
-#popup_close {
+.popup_close {
     position: absolute;
     padding: 5px;
 
     /* 팝업의 아래쪽부터 20px, 오른쪽으로부터 20px */
     right: 20px;
     bottom: 20px;
+    background-color: #FF72B7;
+    border: 2px solid #ea0075;
+}
+.popup_close:hover {
+	background-color: #f14b9a;
+    border: 2px solid #aa0055;
+    cursor: pointer;
 }
 
-.copyright {
-	font-size: 20px;
+.pwdUpdateBtn {
+	position: absolute;
+    padding: 5px;
+
+    /* 팝업의 아래쪽부터 20px, 오른쪽으로부터 20px */
+    right: 100px;
+    bottom: 20px;
+    background-color: #FF72B7;
+    border: 2px solid #ea0075;
 }
+
+.pwdUpdateBtn:hover {
+	background-color: #f14b9a;
+    border: 2px solid #aa0055;
+    cursor: pointer;
+}
+
+/* 팝업의 배경 */
+.popup_back_del {
+    /* 기본적으로 가려짐 */
+    display: none;
+
+    /* 사이트 내용의 면적을 무시하고 배치*/
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* 창 전체 가로 세로 채우기*/
+    width: 100%;
+    height: 100%;
+
+    /* 검정색 배경(0,0,0,)에서 0.8로 투명도 설정*/
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    
+}
+
+/* 팝업 본체 */
+.popup_del{
+    position: relative;
+
+    /* 팝업 창의 가로 세로*/
+    width:500px;
+    height:300px;
+
+    /* 배경 면적의 top 50%, left 50% 위치로 이동 */
+    top:50%;
+    left:50%;
+    /* 중앙 배치를 위해 팝업의 가로 세로의 절반 크기 만큼 옮기기*/
+    margin-top: -100px;
+    margin-left:-200px;
+
+    background:#fff;
+    padding: 20px;
+}
+
+

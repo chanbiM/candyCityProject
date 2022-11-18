@@ -37,15 +37,18 @@ CREATE TABLE costume(
 );
 DROP TABLE costume;
 DROP TABLE costume CASCADE CONSTRAINTS;
+
 --캐릭터
 CREATE TABLE character(
     id VARCHAR2(20),
     head VARCHAR2(20),
+    eyes VARCHAR2(20),
     body VARCHAR2(20),
     shoes VARCHAR2(20),
     CONSTRAINT character_id_PK PRIMARY KEY(id),
     CONSTRAINT character_id_FK FOREIGN KEY(id) REFERENCES member(id),
     CONSTRAINT character_head_FK FOREIGN KEY(head) REFERENCES costume(costume_code),
+    CONSTRAINT character_eyes_FK FOREIGN KEY(eyes) REFERENCES costume(costume_code),
     CONSTRAINT character_body_FK FOREIGN KEY(body) REFERENCES costume(costume_code),
     CONSTRAINT character_shoes_FK FOREIGN KEY(shoes) REFERENCES costume(costume_code)
 );
@@ -120,12 +123,12 @@ DROP TABLE vist_today CASCADE CONSTRAINTS;
 CREATE TABLE manager_notice (
     notice_code VARCHAR2(20),
     id VARCHAR2(20),
-    type CHAR(1), --이벤트 E, 공지사항 N
+    type CHAR(1), --이벤트 E, 공지사항 N, 당첨자 R
     title VARCHAR2(30) NOT NULL,
     contents VARCHAR2(500) NOT NULL,
     CONSTRAINT manager_notice_code_PK PRIMARY KEY(notice_code),
     CONSTRAINT manager_notice_id_FK FOREIGN KEY(id) REFERENCES member(id),
-    CONSTRAINT manager_notice_type_CK CHECK(type IN('E', 'N'))
+    CONSTRAINT manager_notice_type_CK CHECK(type IN('E', 'N', 'R'))
 );
 
 DROP TABLE manager_notice CASCADE CONSTRAINTS;

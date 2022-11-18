@@ -1,0 +1,57 @@
+<%@page import="dao.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp" %>
+	<h2>마이페이지</h2><br><br>
+		<div class="content">
+			<div class="myInfo">
+
+			<form action="">
+				<table>
+					<tr>
+						<th rowspan="4">내정보</th>
+						<td>아이디 </td>
+						<td><input type="text" readonly value="<%= vo.getId() %>" name=""></td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td><input type="text" value="<%= vo.getName() %>" name="name"></td>
+						<td><input type="submit" value="변경"></td>
+					</tr>
+					<tr><td>성별</td>
+						<td><input type="text" readonly value=<%= vo.getGender() %>></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td></td>
+						<td>type="submit" value="변경"</td>
+					</tr>
+					
+					<tr>
+						<th rowspan="5">활동정보</th>
+					</tr>
+					<tr>
+						<td>가입날짜</td>
+						<td><%= vo.getJoinDate() %></td>
+						<td><a href="">회원 탈퇴</a></td>
+					</tr>
+					<tr>
+						<td>마지막 로그인</td>
+						<td><%= vo.getLoginDate() %></td>
+					</tr>
+					<tr>
+						<td>게시글 수</td>
+						<td><%= vo.getPostNum() %></td>
+						<td><a href="">전체삭제</a></td>
+					</tr>
+					<tr>
+						<td>댓글 수</td>
+						<td><%= vo.getJoinDate() %></td>
+						<td><a href="">전체삭제</a></td>
+					</tr>
+				</table>
+			</form>
+				
+			</div>
+		</div>
+<%@ include file="/footer.jsp" %>
