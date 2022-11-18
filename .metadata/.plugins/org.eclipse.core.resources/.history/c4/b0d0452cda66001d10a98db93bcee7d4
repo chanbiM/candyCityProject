@@ -1,0 +1,61 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JdbcUtill;
+import vo.MemberVO;
+import vo.PostVO;
+
+public class HomepiDAO {
+	public HomepiDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ArrayList<PostVO> getSearchHomepiPost(String key, MemberVO homepiData){
+		ArrayList<PostVO> list = new ArrayList<PostVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String str = "%" + key + "%";
+		
+		conn = JdbcUtill.getConnection();
+		
+
+		try {
+			if (key.equals("all")) {
+				sql = "select * from LIB_BOOK ORDER By book_no ASC";
+				pstmt = conn.prepareStatement(sql);
+			} else {
+				sql = "select * from LIB_BOOK where title like ? ORDER By book_no ASC";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, str);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				BookVO vo = new BookVO();
+				PostVO postVo = new PostVO();
+				vo.setBookNo(rs.getInt("book_no"));
+				vo.setTitle(rs.getString("title"));
+				vo.setAuthor(rs.getString("author"));
+				vo.setCompany(rs.getString("company"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setRentaled(rs.getString("rentaled"));
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+}

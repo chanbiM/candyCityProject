@@ -3,6 +3,7 @@ CREATE SEQUENCE join_member_seq;
 CREATE TABLE member(
     id VARCHAR2(20),
     name VARCHAR2(20),
+    introduce VARCHAR2(80),
     gender CHAR(1),
     pwd VARCHAR2(20) NOT NULL,
     join_num NUMBER(30) NOT NULL,
@@ -10,6 +11,8 @@ CREATE TABLE member(
     post_num NUMBER(10),
     comment_num NUMBER(15),
     manager CHAR(1),
+    join_date DATE NOT NULL,
+    login_date DATE,
     CONSTRAINT member_id_PK PRIMARY KEY(id),
     CONSTRAINT member_manager_CK CHECK(manager IN('O', 'X')),
     CONSTRAINT member_gender_CK CHECK(gender IN('F', 'M', 'E'))
@@ -17,9 +20,11 @@ CREATE TABLE member(
 DROP TABLE member;
 DROP SEQUENCE join_member_seq;
 
-insert into member(id, name, gender, pwd, join_num, candy, post_num, comment_num, manager) values('chanbi','임찬비','F', 'cksql0713', join_member_seq.nextval, 10, 0, 0, 'O');
+insert into member values('chanbi','임찬비',NULL, 'F', 'cksql0713', join_member_seq.nextval, 10, 0, 0, 'O', '2022/11/18', NULL);
+delete member;
 
 select * from member;
+update member set login_date=SYSDATE where id='chanbi';
 
 --의상
 CREATE TABLE costume(
@@ -70,6 +75,11 @@ CREATE TABLE post(
     CONSTRAINT post_comment_o_CK CHECK(comment_o IN('O', NULL)),
     CONSTRAINT post_type_CK CHECK(post_type IN('S', 'B'))
 );
+
+--타인이 볼떄
+select * from post where id='chanbi' AND (title like '%더럽%' OR contents like '%더럽%') AND post_type='B' order by 1 desc;
+
+select * from post where id='chanbi' AND (title like '%더럽%' OR contents like '%더럽%') order by 1 desc;
 
 insert into post values('post-'||post_seq.nextval,'chanbi',SYSDATE,'더럽게 안되네','퉤!','O','','B');
 
@@ -131,15 +141,24 @@ DROP TABLE mail CASCADE CONSTRAINTS;
 
 --문의
 
--- 랭킹(뷰)
+-- 랭킹(뷰)  
 
-SELECT ROWNUM, m.name, m.post_num
-    FROM (SELECT m.name, m.post_num
-                FROM member m
-                ORDER BY m.post_num DESC) m
-    WHERE ROWNUM >= 3;
+SELECT id, name, post_num,
+RANK () OVER (order by post_num desc) 순위
+FROM member
+ORDER BY 순위
 
-    
-    
-    
-    
+select ROWNUM, a.*
+from (SELECT id, name, post_num, RANK()OVER (order by post_num desc) rk
+		FROM member
+		ORDER BY rk asc) a
+where ROWNUM <= 4;
+
+
+SELECT id, name, post_num, RANK()OVER (order by post_num desc)
+		FROM member
+		ORDER BY RANK()OVER (order by post_num desc) desc;
+		
+update member set post_num=post_num+1 where id='chanbi';
+
+SELECT id, name, post_num, RANK () OVER(order by post_num desc) alias(rk) FROM member where rk >= 4 ORDER BY rk;

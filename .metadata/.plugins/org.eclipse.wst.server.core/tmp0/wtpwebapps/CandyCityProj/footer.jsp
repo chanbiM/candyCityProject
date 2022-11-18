@@ -4,20 +4,20 @@
         <footer>
             <!-- 하단로고 -->
             <div>
-                <a href="#" class="logo">
-                    <img src="/images/logo.png" alt="로고">
+                <a href="/index.jsp" class="logo">
+                    <img src="/images/logo.png" alt="로고" >
                 </a>
             </div>
             <!-- 카피라이트 -->
             <div class="copyright">
-                <p>카피라이트란</p>
+                <p> Copyright &copy; 2022 chanbi all rights reserved</p>
             </div>
             <!-- SNS -->
             <div>
                 <ul class="sns">
-                    <li><a href="#"><img src="/images/youtube.png" alt="유튜브" height="40"></a></li>
+                    <li><a href="https://www.youtube.com/@rorochanbi"><img src="/images/youtube.png" alt="유튜브" height="40"></a></li>
                     <li><a href="#"><img src="/images/facebook.png" alt="페이스북" height="40"></a></li>
-                    <li><a href="#"><img src="/images/kakao.png" alt="카카오톡" height="40"></a></li>
+                    <li><a href="https://open.kakao.com/o/s1olGebe"><img src="/images/kakao.png" alt="카카오톡" height="40"></a></li>
                 </ul>
             </div>
         </footer>

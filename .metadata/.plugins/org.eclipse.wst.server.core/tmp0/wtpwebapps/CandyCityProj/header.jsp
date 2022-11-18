@@ -55,8 +55,20 @@
 			<ul class="mainmenu">
 				<li><a href="/homepi/mini_homeList.jsp">미니홈피</a>
 					<ul class="submenu">
-						<li><a href="/homepi/my_mini_home.jsp">내 미니홈피</a></li>
+					<%
+						if (vo == null) {
+					%>
+						<li><a href="/member/login.jsp">내 미니홈피</a></li>
 						<li><a href="/homepi/mini_homeList.jsp">미니홈피 목록</a></li>
+					<%
+						} else {
+					%>
+						
+						<li><a href="/GetHomepi?id=<%= vo.getId() %>">내 미니홈피</a></li>
+						<li><a href="/homepi/mini_homeList.jsp">미니홈피 목록</a></li>
+					<%
+						}
+					%>
 					</ul></li>
 
 				<li><a href="/character/shop.jsp">의상</a>
@@ -69,10 +81,10 @@
 					<ul class="submenu">
 					</ul></li>
 
-				<li><a href="#">이벤트</a>
+				<li><a href="#">공지사항</a>
 					<ul class="submenu">
-						<li><a href="#">진행중인 이벤트</a></li>
-						<li><a href="#">종료된 이벤트</a></li>
+						<li><a href="#">이벤트</a></li>
+						<li><a href="#">공지사항</a></li>
 						<li><a href="#">당첨자 발표</a></li>
 					</ul></li>
 

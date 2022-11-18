@@ -36,16 +36,16 @@ $("#post_tab").click(function(){
     $(".tab > div").removeClass("active")
     $("#post_tab").addClass("active")
 
-    $("#gallary").hide();
+    $("#event").hide();
     $("#post").show();
 })
 
-$("#gallary_tab").click(function(){
+$("#event_tab").click(function(){
     $(".tab > div").removeClass("active")
-    $("#gallary_tab").addClass("active")
+    $("#event_tab").addClass("active")
 
     $("#post").hide();
-    $("#gallary").show();
+    $("#event").show();
 })
 
 /* 

@@ -1,0 +1,72 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import common.JdbcUtill;
+import vo.MemberVO;
+import vo.PostVO;
+
+public class HomepiDAO {
+	public HomepiDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ArrayList<PostVO> getSearchHomepiPost(String key, MemberVO homepiData, MemberVO memberData){
+		ArrayList<PostVO> list = new ArrayList<PostVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String str = "%" + key + "%";
+		
+		conn = JdbcUtill.getConnection();
+		
+
+		try {
+			if (key.equals("all")) {
+				if(homepiData.getId().equals(memberData.getId())) {
+					sql = "select * from post where id=? AND (title like ? OR contents like ?) AND post_type='B' order by 1 desc";
+				} else {
+					
+				}
+				
+				
+				pstmt = conn.prepareStatement(sql);
+			} else {
+				sql = "select * from LIB_BOOK where title like ? ORDER By book_no ASC";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, str);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				PostVO postVo = new PostVO();
+				postVo.setPostCode(rs.getString("post_code"));
+				postVo.setId(rs.getString("id"));
+				postVo.setWriteDate(rs.getDate("write_date"));
+				postVo.setTitle(rs.getString("title"));
+				postVo.setContents(rs.getString("contents"));
+				postVo.setCommentO(rs.getString("comment_o"));
+				postVo.setUpdateDate(rs.getDate("update_date"));
+				postVo.setPostType(rs.getString("post_type"));
+				
+				list.add(postVo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+}

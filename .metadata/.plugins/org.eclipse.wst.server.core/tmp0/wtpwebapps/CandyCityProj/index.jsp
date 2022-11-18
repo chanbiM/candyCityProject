@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
@@ -18,7 +20,7 @@
                     <!-- 활성화돼있는 탭을 구분하기 위해 active 클래스 사용 -->
                     <!-- 기본적으로 활성화 돼있는 요소는 공지사항 -->
                     <div id="post_tab" class="active"><a href="#">공지사항</a></div>
-                    <div id="gallary_tab"><a href="#">이벤트</a></div>
+                    <div id="event_tab"><a href="#">이벤트</a></div>
                 </div>
                 <!-- 내용 요소들 -->
                 <div class="content">
@@ -31,27 +33,37 @@
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                         </ul>
                     </div>
                     <!-- 갤러리 -->
-                    <div id="gallary">
+                    <div id="event">
                         <ul>
-                            <li id="open_popup"><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                             <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div id="link_container">
-           		 <h4>랭킹</h4>
+            <div id="ranking">
+           		 <h4>게시글 랭킹</h4>
                 <ul>
-                    <li><a href="#">1위:</a></li>
-                    <li><a href="#">2위 </a></li>
-                    <li><a href="#">3위 </a></li>
-                    <li><a href="#">4위 </a></li>
+                <% 
+                	MemberDAO dao = new MemberDAO();
+               		ArrayList<MemberVO> list = dao.getRank();
+               		
+               		int rank = 1;
+            		for(MemberVO data : list) {
+                %>
+                		<li><a href="/GetHomepi?id=<%= data.getId() %>"><%= rank %>위: <%= data.getName() %>(<%= data.getPostNum() %>개)</a></li>
+                		<% rank++; %>
+                <%} %>
                 </ul>
             </div>
         </section>

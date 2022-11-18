@@ -35,11 +35,20 @@ public class LoginController extends HttpServlet {
 		
 		MemberDAO dao = new MemberDAO();
 		result = dao.getMemberPwd(id, pwd);
-				
+		
 		if(result) {
 			MemberVO vo = new MemberVO();
-			vo.setId(id);
-			vo.setPwd(pwd);
+			vo = dao.getMemberInfo(id);
+			
+			int n = 0;
+			n = dao.updateLoginDate(id);
+			System.out.println(n);
+			
+			if(n > 0) {
+				System.out.println("로그인 시간 업데이트");
+			} else {
+				out.println("<script> alert('로그인 실패.'); history.back(); </script>");
+			}
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginOK", vo);

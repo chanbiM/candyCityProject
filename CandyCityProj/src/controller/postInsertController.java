@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.MemberDAO;
 import dao.PostDAO;
 import vo.MemberVO;
 import vo.PostVO;
@@ -42,12 +41,12 @@ public class PostInsertController extends HttpServlet {
 		PostVO postVo = new PostVO();
 		PostDAO dao = new PostDAO();
 		int result = 0;
-		String postOption = request.getParameter("postOption");
+		String postType = request.getParameter("postType");
 		
 		postVo.setTitle(request.getParameter("title"));
 		postVo.setContents(request.getParameter("contents"));
 		postVo.setCommentO(request.getParameter("comment"));
-		postVo.setPostOption(postOption);
+		postVo.setPostType(postType);
 		
 		
 		if(request.getParameter("title") == null){
@@ -59,8 +58,16 @@ public class PostInsertController extends HttpServlet {
 				result = dao.insertPost(postVo, memberVo);
 				
 				if(result > 0) {
-					out.print("<script>alert('게시글 작성 성공')</script>");
-					response.sendRedirect(contextPath + "/member/homepi/my_mini_home.jsp"); 
+					result = 0;
+					result = dao.updatePostNum(memberVo.getId());
+					
+					if(result > 0) {
+						out.print("<script>alert('게시글 작성 성공')</script>");
+						response.sendRedirect(contextPath + "/member/homepi/miniHomeList.jsp"); 
+					} else {
+						out.print("<script>alert('게시글 작성 실패'); history.back(); </script>");
+					}
+					
 				} else {
 					out.print("<script>alert('게시글 작성 실패'); history.back(); </script>");
 				}

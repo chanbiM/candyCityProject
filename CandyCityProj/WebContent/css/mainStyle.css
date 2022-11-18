@@ -12,6 +12,11 @@
     color: rgb(19, 0, 1);
     font-family: 'DungGeunMo';
     color: #8e0047;
+    -ms-user-select: none; 
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   user-select: none;
 }
 
 .wrapper {
@@ -192,7 +197,7 @@ header {
 
 section {
     display: flex;
-    height: 250px;
+    height: 350px;
     overflow: hidden;
     margin: 20px;
 }
@@ -231,7 +236,7 @@ section > div {
 
     /* 일정 크기 이상으로 글자가 나오는걸 방지 */
     max-width: 600px;
-    height: 130px;
+    height: 200px;
 }
 
 /* 각 요소들의 글자가 넘쳐날 경우 .... 처리*/
@@ -247,41 +252,64 @@ section > div {
 
 /* 갤러리 */
 /* 기본적으로 활성화 된게 공지사항이므로 갤러리 컨텐츠는 가리기 */
-#gallary {
+#event {
     display: none;
 }
 
-#gallary ul {
-    display: flex;
-    justify-content: space-between;
-    
+#event li{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    line-height: 25px;
+
+
+    border-bottom: 1px solid #800040;
 }
 
-#gallary img{
-    width: 100px;
+#ranking {
+	margin-top: 2px;
+}
+#ranking ul, #ranking li{
+    width: 95%;
 }
 
-#link_container ul, #link_container li{
-    width: 100%;
-}
-
-#link_container ul {
-	border: 2px solid #FF72B7;
+#ranking ul {
+	border: 2px solid #800040;
 
 	padding: 10px; 
+	height: 195px;
+	
+	
 }
-#link_container li {
+#ranking li {
     /* 버튼별 간격 */
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    width: 96%;
+    
 
     /* 버튼 내부 간격 */
-    padding: 10px;
+    padding: 7px;
     text-align: center;
-    background-color: #FF72B7;
+    background-color: #e366b1;
+    text-align: left;
+    color: #8e0047;
 }
 
-#link_container a {
+#ranking h4 {
+	background-color: #FF72B7;
+	color: white;
+	
+	font-weight: normal;
+	border: 2px solid #800040;
+	width: 130px;
+	padding: 5px;
+	overflow: hidden;
+	text-align: center;
+	border-bottom: none;
+}
+#ranking a {
     color: white;
+    margin-left: 5px;
 }
 
 /* 푸터 */
@@ -358,4 +386,8 @@ footer img {
     /* 팝업의 아래쪽부터 20px, 오른쪽으로부터 20px */
     right: 20px;
     bottom: 20px;
+}
+
+.copyright {
+	font-size: 20px;
 }

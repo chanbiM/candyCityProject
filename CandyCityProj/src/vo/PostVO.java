@@ -4,24 +4,31 @@ import java.sql.Date;
 
 public class PostVO {
 	/*
-	 * post_code VARCHAR2(20), id VARCHAR2(20), --쓴사람 write_date DATE NOT NULL,
+	 * post_code VARCHAR2(20), id VARCHAR2(20), --쓴사람 writeDate DATE NOT NULL,
 	 * title VARCHAR2(30) NOT NULL, contents VARCHAR2(500) NOT NULL, comment_o
 	 * CHAR(1),
 	 */
 	
 	private String postCode;
 	private String id;
-	private Date write_date;
+	private Date writeDate;
 	private String title;
 	private String contents;
 	private String commentO;
-	private String postOption;
+	private String postType;
+	private Date updateDate;
 	
-	public String getPostOption() {
-		return postOption;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
-	public void setPostOption(String postOption) {
-		this.postOption = postOption;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	public String getPostType() {
+		return postType;
+	}
+	public void setPostType(String postType) {
+		this.postType = postType;
 	}
 	public PostVO() {
 		// TODO Auto-generated constructor stub
@@ -38,11 +45,11 @@ public class PostVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getWrite_date() {
-		return write_date;
+	public Date getWriteDate() {
+		return writeDate;
 	}
-	public void setWrite_date(Date write_date) {
-		this.write_date = write_date;
+	public void setWriteDate(Date writeDate) {
+		this.writeDate = writeDate;
 	}
 	public String getTitle() {
 		return title;

@@ -1,0 +1,118 @@
+package vo;
+
+import oracle.sql.DATE;
+
+public class MemberVO {
+	private String id;
+	private String pwd;
+	private String name;
+	private String gender;
+	private int join_num;
+	private int candy;
+	private int postNum;
+	private int commentNum;
+	private String manager;
+	private String introduce;
+	private DATE joinDate;
+	private DATE loginDate;
+	
+	public DATE getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(DATE joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	public DATE getLoginDate() {
+		return loginDate;
+	}
+
+	public void setLoginDate(DATE loginDate) {
+		this.loginDate = loginDate;
+	}
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
+	public MemberVO() {
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public int getJoin_num() {
+		return join_num;
+	}
+
+	public void setJoin_num(int join_num) {
+		this.join_num = join_num;
+	}
+
+	public int getCandy() {
+		return candy;
+	}
+
+	public void setCandy(int candy) {
+		this.candy = candy;
+	}
+
+	public int getPostNum() {
+		return postNum;
+	}
+
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+	
+}

@@ -1,0 +1,9 @@
+package dao;
+
+import java.util.ArrayList;
+
+import vo.PostVO;
+
+public class HomepiDAO {
+	ArrayList<PostVO>
+}
