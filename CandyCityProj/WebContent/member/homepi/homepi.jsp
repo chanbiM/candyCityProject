@@ -103,8 +103,8 @@
                			}
                			for(PostVO data : list) {
                 %>
-                			<h2>
-								<a href="#"><%= data.getTitle() %></a>
+                			<h2 class="title">
+								<a href="/GetPost?id=<%= data.getId() %>&postCode=<%= data.getPostCode() %>&name=<%= hompiData.getName() %>"><%= data.getTitle() %></a>
 							</h2>
                 			<!--최종 수정 날짜 기준으로-->
                 			<%
@@ -121,7 +121,7 @@
 							
 							<br> <br>
 							<p id="post_content">
-								<a href="#"><%= data.getContents() %></a>
+								<a href="/GetPost?id=<%= data.getId() %>&postCode=<%= data.getPostCode() %>&name=<%= hompiData.getName() %>"><%= data.getContents() %></a>
 							</p>
 							<div id="post_list">
 								<button>
@@ -129,13 +129,6 @@
 								</button>
 							</div>
 	
-							<%
-								if(data.getCommentO().equals("O")){
-							%>
-									<p>댓글창</p><br>
-									<hr>
-							<% } %>
-							
 				<%
                	}  %>
                	

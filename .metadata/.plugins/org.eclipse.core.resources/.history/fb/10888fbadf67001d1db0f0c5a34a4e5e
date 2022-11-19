@@ -1,0 +1,78 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JdbcUtill;
+import vo.MemberVO;
+import vo.NoticeVO;
+
+public class adminDAO {
+	//공지사항 작성
+	public int insertNotice(NoticeVO vo, MemberVO memberVo) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into manager_notice values('notice-'||notice_seq.nextval,?,?,?,?,NULL,SYSDATE)";
+	
+		conn = JdbcUtill.getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(2, vo.getType());
+			pstmt.setString(3, vo.getTitle());
+			pstmt.setString(4, vo.getContents());
+			
+			n = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		
+		return n;
+	}
+	
+	//이벤트 게시글 조회
+	public ArrayList<NoticeVO> getNoticeList() {
+		ArrayList<NoticeVO> list = new ArrayList<NoticeVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from manager_notice where type=? ORDER BY notice_code desc";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				NoticeVO vo = new NoticeVO();
+				vo.setNoticeCode(rs.getString("notice_code"));
+				vo.setId(rs.getString("id"));
+				vo.setType(rs.getString("type"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContents(rs.getString("contents"));
+				vo.setEndO(rs.getString("end_o"));
+				vo.setWriteDate(rs.getDate("write_date"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+}

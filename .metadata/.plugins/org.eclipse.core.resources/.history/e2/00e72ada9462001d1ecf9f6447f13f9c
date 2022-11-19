@@ -1,9 +1,0 @@
-package dao;
-
-import vo.MemberVO;
-
-public class PostDAO {
-	public int insertPost(MemberVO vo) {
-		
-	}
-}

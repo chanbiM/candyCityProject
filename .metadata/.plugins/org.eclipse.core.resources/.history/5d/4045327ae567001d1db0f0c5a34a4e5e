@@ -1,0 +1,44 @@
+<%@page import="vo.NoticeVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="/css/homepiStyle.css">
+<%
+	NoticeVO noticeData = (NoticeVO) request.getAttribute("noticeData");
+%>
+
+<!--공지사항-->
+<div class="post">
+<% 
+               			if(noticeData.getNoticeCode() == null){
+               	%>
+               				<p align="center">존재하지 않는 게시물 입니다.</p>		
+               			<%
+               			}
+                %>
+                			<h2 class="title">
+								<%= noticeData.getTitle() %>
+							</h2>
+                			<p style="color: #804d66;"><%= noticeData.getWriteDate() %></p>
+							
+							<br> <br>
+							<p id="post_content">
+								<%= postData.getContents() %>
+							</p>
+							<div id="post_list">
+								<button>
+								<a href="/GetPostList?id=<%= postData.getId() %>">다른 게시글 더보기</a>
+								</button>
+							</div>
+	
+							<%
+								if(postData.getCommentO().equals("O")){
+							%>
+									<p>댓글창</p><br>
+									<hr>
+							<% } %>
+							
+               	
+      </div>
+<%@ include file="/footer.jsp"%>

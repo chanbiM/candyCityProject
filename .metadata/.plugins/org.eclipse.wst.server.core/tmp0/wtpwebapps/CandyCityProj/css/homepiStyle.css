@@ -147,6 +147,8 @@ input[type="text"]{
     height: 40px;
 }
 
+
+
 #post_list button:hover {
     background-color: #943464;
     color: #d5c8c8;
@@ -163,3 +165,43 @@ hr {
     border: 0;
 	background-color : #811b4e;
 }
+
+.post {
+    border: 2px solid #943464;
+
+    width: 66%;
+    height: 750px;
+    display: inline-block;
+    padding: 20px;
+}
+
+.title {
+	margin: 0px;
+}
+
+.notice {
+	border: 2px solid #943464;
+
+    width: 1180px;
+    height: 750px;
+    padding: 20px;
+    margin: 30px;
+}
+
+#notice_content {
+	height: 600px;
+}
+
+#notice_list {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px; 
+}
+#notice_list button{
+    background-color: #ca6497;
+    color: #fff1f1;
+    border: 2px #9a4f74 solid;
+    width: 200px;
+    height: 40px;
+}
+

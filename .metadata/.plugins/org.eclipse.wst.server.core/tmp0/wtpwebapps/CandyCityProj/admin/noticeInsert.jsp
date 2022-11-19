@@ -6,7 +6,7 @@
         <br>
         <form action="/noticeInsert" method="get">
             <div class="top">
-                <h2>게시글 작성</h2>
+                <h2>공지 작성</h2>
                 
                 <div class="right">
                     <ul>

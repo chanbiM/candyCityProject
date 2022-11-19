@@ -1,0 +1,43 @@
+package controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.MemberDAO;
+import dao.adminDAO;
+import vo.MemberVO;
+import vo.NoticeVO;
+
+@WebServlet("/getNoticeList")
+public class GetNoticeList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public GetNoticeList() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		adminDAO dao = new adminDAO();
+		String type = request.getParameter("type");
+		
+		ArrayList<NoticeVO> noticeList = dao.getNoticeList();
+		
+		request.setAttribute("noticeList", noticeList);
+		request.getRequestDispatcher("/member/event/noticeListList.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

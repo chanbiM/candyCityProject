@@ -1,3 +1,5 @@
+<%@page import="vo.NoticeVO"%>
+<%@page import="dao.adminDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -27,26 +29,26 @@
                     <!-- 공지사항 -->
                     <div id="post">
                         <ul>
-                            <!-- 첫번째 요소 클릭시 팝업 보이게 해야됨 -->
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+<% 
+                			adminDAO adminDao = new adminDAO();
+               				ArrayList<NoticeVO> noticeList = adminDao.getNoticeIndex("N");
+               		
+            				for(NoticeVO data : noticeList) {
+%>
+                			<li><a href="/getNotice?noticeCode=<%= data.getNoticeCode() %>"><%= data.getTitle() %></a></li>
+               				 <%} %>
                         </ul>
                     </div>
                     <!-- 이벤트 -->
                     <div id="event">
                         <ul>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
-                            <li><a href="#">에베베베ㅔ에베베베ㅔ에베베베ㅔ에베베베ㅔ</a></li>
+                            <% 
+               				ArrayList<NoticeVO> eventList = adminDao.getNoticeIndex("E");
+               		
+            				for(NoticeVO data : eventList) {
+%>
+                			<li><a href="/getNotice?noticeCode=<%= data.getNoticeCode() %>"><%= data.getTitle() %></a></li>
+               				 <%} %>
                         </ul>
                     </div>
                 </div>
@@ -55,11 +57,11 @@
            		 <h4>게시글 랭킹</h4>
                 <ul>
                 <% 
-                	MemberDAO dao = new MemberDAO();
-               		ArrayList<MemberVO> list = dao.getRank();
+                	MemberDAO memberDao = new MemberDAO();
+               		ArrayList<MemberVO> rankingList = memberDao.getRank();
                		
                		int rank = 1;
-            		for(MemberVO data : list) {
+            		for(MemberVO data : rankingList) {
                 %>
                 		<li><a href="/GetHomepi?id=<%= data.getId() %>"><%= rank %>위: <%= data.getName() %>(<%= data.getPostNum() %>개)</a></li>
                 		<% rank++; %>

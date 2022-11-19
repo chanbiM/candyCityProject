@@ -77,20 +77,20 @@
 				%>
 					<tr>
 						<td>
-							<a href=""><%= num %></a>
+							<a href="/GetPost?id=<%= data.getId() %>&postCode=<%= data.getPostCode() %>&name=<%= hompiData.getName() %>"><%= num %></a>
 						</td>
 						<td>
-							<a href=""><%= data.getTitle() %></a>
+							<a href="/GetPost?id=<%= data.getId() %>&postCode=<%= data.getPostCode() %>&name=<%= hompiData.getName() %>"><%= data.getTitle() %></a>
 						</td>
 						<td>
 						<%
                 				if(data.getUpdateDate() == null) {
                 			%>
-                				<a href=""><%= data.getWriteDate() %></a>
+                				<a href="/GetPost?id=<%= data.getId() %>&postCode=<%= data.getPostCode() %>&name=<%= hompiData.getName() %>"><%= data.getWriteDate() %></a>
                 			<%
                 				} else {
                 			%>
-                					<a href=""><%= data.getUpdateDate() %></a>
+                					<a href="/GetPost?id=<%= data.getId() %>&postCode=<%= data.getPostCode() %>&name=<%= hompiData.getName() %>"><%= data.getUpdateDate() %></a>
                 			<%
                 				}
                 			%>

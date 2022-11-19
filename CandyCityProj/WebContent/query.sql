@@ -108,46 +108,30 @@ CREATE TABLE post_comment(
 );
 DROP TABLE post_comment CASCADE CONSTRAINTS;
 
---오늘 방문자
-CREATE SEQUENCE vist_today_seq;
-CREATE TABLE vist_today (
-    vist_num NUMBER(8),
-    id VARCHAR2(20),
-    today DATE NOT NULL,
-    CONSTRAINT vist_today_vist_num_PK PRIMARY KEY(vist_num),
-    CONSTRAINT vist_today_id_FK FOREIGN KEY(id) REFERENCES member(id)
-);
-DROP TABLE vist_today CASCADE CONSTRAINTS;
-
 --관리자 공지사항 (이벤트, 공지사항)
 CREATE TABLE manager_notice (
     notice_code VARCHAR2(20),
     id VARCHAR2(20),
     type CHAR(1), --이벤트 E, 공지사항 N, 당첨자 R
-    title VARCHAR2(30) NOT NULL,
-    contents VARCHAR2(500) NOT NULL,
+    title VARCHAR2(500) NOT NULL,
+    contents VARCHAR2(1000) NOT NULL,
+    end_o CHAR(1),
+    write_date DATE NOT NULL,
     CONSTRAINT manager_notice_code_PK PRIMARY KEY(notice_code),
     CONSTRAINT manager_notice_id_FK FOREIGN KEY(id) REFERENCES member(id),
     CONSTRAINT manager_notice_type_CK CHECK(type IN('E', 'N', 'R'))
 );
+CREATE SEQUENCE notice_seq;
+insert into manager_notice values('notice-'||notice_seq.nextval,'chanbi','E','이벤트닷!','이벤트임!',NULL,SYSDATE);
+
+select * from manager_notice;
+update member set end_o='O' where notice_code='chanbi';
+
+
 
 DROP TABLE manager_notice CASCADE CONSTRAINTS;
 
---우편함(보면 지워지게)
-CREATE TABLE mail(
-    mail_code VARCHAR2(20),
-    id VARCHAR2(20),
-    contents VARCHAR2(500) NOT NULL,
-    CONSTRAINT mail_code_PK PRIMARY KEY(mail_code),
-    CONSTRAINT mail_id_FK FOREIGN KEY(id) REFERENCES member(id)
-);
 
-DROP TABLE mail CASCADE CONSTRAINTS;
---신고
-
---문의
-
--- 랭킹(뷰)  
 select ROWNUM, a.*
 from (SELECT id, name, post_num, RANK()OVER (order by post_num desc) rk
 		FROM member
@@ -173,5 +157,13 @@ from (SELECT post_code, id, write_date, title, contents, comment_o, update_date,
 		where id='chanbi'
 		ORDER BY post_code desc) a
 where ROWNUM <= 1;
+
+
+select ROWNUM, a.*
+from (SELECT *
+		FROM manager_notice
+		where type='N' AND end_o IS null
+		ORDER BY notice_code desc) a
+where ROWNUM <=9;
 
 select * from post where id='chanbi' ORDER BY post_code desc;

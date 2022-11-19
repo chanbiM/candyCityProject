@@ -2,6 +2,7 @@
     width: 900px;
     display: flex;
     justify-content: center;
+    
 }
 
 th {
@@ -23,7 +24,12 @@ td, th, tr {
 .title {
     width: 700px;  
 }
-
+.date {
+	width: 300px; 
+}
+.end {
+	width: 250px;
+}
 .type {
     width: 80px;
 }

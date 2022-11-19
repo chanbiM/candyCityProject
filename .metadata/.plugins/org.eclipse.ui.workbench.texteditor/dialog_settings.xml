@@ -6,8 +6,11 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="true"/>
 		<item key="isRegEx" value="true"/>
-		<item key="selection" value="color"/>
+		<item key="selection" value="sub"/>
 		<list key="findhistory">
+			<item value="sub"/>
+			<item value="member"/>
+			<item value="font"/>
 			<item value="color"/>
 			<item value="ga"/>
 			<item value="gall"/>
@@ -18,6 +21,7 @@
 			<item value="se"/>
 		</list>
 		<list key="replacehistory">
+			<item value="vo"/>
 			<item value="commentNum"/>
 			<item value="postNum"/>
 			<item value="writeDate"/>

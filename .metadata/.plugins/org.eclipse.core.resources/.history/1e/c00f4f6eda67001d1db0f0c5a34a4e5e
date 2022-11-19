@@ -1,0 +1,13 @@
+package vo;
+
+public class NoticeVO {
+////notice_code VARCHAR2(20),
+//    id VARCHAR2(20),
+//    type CHAR(1), --이벤트 E, 공지사항 N, 당첨자 R
+//    title VARCHAR2(30) NOT NULL,
+//    contents VARCHAR2(500) NOT NULL,
+//    end_o CHAR(1),
+//    write_date DATE NOT NULL,
+	
+	noticeCode
+}

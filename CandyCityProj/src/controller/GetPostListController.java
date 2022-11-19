@@ -36,7 +36,6 @@ public class GetPostListController extends HttpServlet {
 		PostDAO postDao = new PostDAO();
 
 		String userId = request.getParameter("id");
-		System.out.println(userId);
 
 		if (userId == null) {
 			out.println("<script>alert('잘못된 경로입니다'); history.back(); </script>");

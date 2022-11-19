@@ -64,6 +64,7 @@ public class PostDAO {
 			return n;
 		}
 		
+		//대표게시글 불러오기
 		public ArrayList<PostVO> getRepresentativePost(String id){
 			ArrayList<PostVO> list = new ArrayList<PostVO>();
 			Connection conn = null;
@@ -106,6 +107,7 @@ public class PostDAO {
 			return list;
 		}
 		
+		//홈피 포스트 게시글 목록 조회
 		public ArrayList<PostVO> getPost(String id){
 			ArrayList<PostVO> list = new ArrayList<PostVO>();
 			Connection conn = null;
@@ -193,5 +195,40 @@ public class PostDAO {
 			}
 			
 			return list;
+		}
+		
+		//게시글 내용 조회
+		public PostVO getPostInfo(String homepiId, String PostCode) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from post where id=? and post_code=?";
+			PostVO result = new PostVO();
+			
+			conn = JdbcUtill.getConnection();
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, homepiId);
+				pstmt.setString(2, PostCode);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result.setPostCode(rs.getString("post_code"));
+					result.setTitle(rs.getString("title"));
+					result.setContents(rs.getString("contents"));
+					result.setId(rs.getString("id"));
+					result.setUpdateDate(rs.getDate("update_date"));
+					result.setWriteDate(rs.getDate("write_date"));
+					result.setCommentO(rs.getString("comment_o"));
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt, rs);
+			}
+			
+			return result;
 		}
 }

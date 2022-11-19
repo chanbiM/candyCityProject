@@ -83,9 +83,9 @@
 
 				<li><a href="#">공지사항</a>
 					<ul class="submenu">
-						<li><a href="#">이벤트</a></li>
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">당첨자 발표</a></li>
+						<li><a href="/getNoticeList?type=E">이벤트</a></li>
+						<li><a href="/getNoticeList?type=N">공지사항</a></li>
+						<li><a href="/getNoticeList?type=R">당첨자 발표</a></li>
 					</ul></li>
 
 				<%
@@ -98,7 +98,6 @@
 						<!-- <li><a href="#">문의글 확인</a></li>
 						<li><a href="#">신고글 확인</a></li> -->
 						<li><a href="/admin/noticeInsert.jsp">공지사항/이벤트 작성</a></li>
-						<li><a href="#">우편 보내기</a></li>
 					</ul></li>
 			<%
 				}

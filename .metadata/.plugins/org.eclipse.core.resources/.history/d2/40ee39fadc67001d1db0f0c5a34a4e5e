@@ -1,0 +1,62 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="/css/homepiStyle.css">
+<link rel="stylesheet" href="/css/postListStyle.css">
+
+	<br>
+<%
+	ArrayList<MemberVO> homepiList = (ArrayList<MemberVO>)request.getAttribute("homepiList");
+%>
+	<!--미니홈피 목록-->
+	<h2>미니홈피 목록</h2> <br>
+			<table id="homepiList">
+				<tr>
+					<th class="number">
+						번호
+					</th>
+
+					<th class="name">
+						제목
+					</th>
+
+					<th class="joinDate">
+						날짜
+					</th>
+					
+					<th class="loginDate">
+						종료여부
+					</th>
+				</tr>
+
+				<%
+					int num = 1;
+					for(MemberVO data : homepiList) {
+				%>
+					<tr>
+						<td>
+							<a href="/GetHomepi?id=<%= data.getId() %>"><%= num %></a>
+						</td>
+						<td>
+							<a href="/GetHomepi?id=<%= data.getId() %>"><%= data.getName() %></a>
+						</td>
+						<td>
+							<a href="/GetHomepi?id=<%= data.getId() %>"><%= data.getJoinDate() %></a>
+						</td>
+						<td>
+							<% if(data.getLoginDate() == null){ %>
+								<a href="/GetHomepi?id=<%= data.getId() %>">로그인 한 적 없음</a>
+							<% } else {%>
+								<a href="/GetHomepi?id=<%= data.getId() %>"><%= data.getLoginDate() %></a>
+							<% } %>
+						</td>
+				</tr>
+					<% num++; %>
+				<% } %>
+				
+				
+			</table>
+			
+<%@ include file="/footer.jsp"%>
