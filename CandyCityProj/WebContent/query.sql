@@ -17,26 +17,75 @@ CREATE TABLE member(
     CONSTRAINT member_manager_CK CHECK(manager IN('O', 'X')),
     CONSTRAINT member_gender_CK CHECK(gender IN('F', 'M', 'E'))
 );
-DROP TABLE member;
-DROP SEQUENCE join_member_seq;
+
 
 insert into member values('chanbi','임찬비',NULL, 'F', 'cksql0713', join_member_seq.nextval, 10, 0, 0, 'O', '2022/11/18', NULL);
-delete member;
 
-select * from member;
-update member set post_num=0 where id='chanbi';
+--게시글
+CREATE SEQUENCE post_seq;
+CREATE TABLE post(
+    post_code VARCHAR2(20), --
+    id VARCHAR2(20), --쓴사람
+    write_date DATE NOT NULL,
+    title VARCHAR2(500) NOT NULL,
+    contents VARCHAR2(1000) NOT NULL,
+    comment_o CHAR(1),
+    update_date DATE,
+    post_type CHAR(1),
+    CONSTRAINT post_code_PK PRIMARY KEY(post_code),
+    CONSTRAINT post_id_FK FOREIGN KEY(id) REFERENCES member(id),
+    CONSTRAINT post_comment_o_CK CHECK(comment_o IN('O', NULL)),
+    CONSTRAINT post_type_CK CHECK(post_type IN('S', 'B'))
+);
+alter table post modify(title VARCHAR2(500));
+alter table post modify(contents VARCHAR2(1000));
+
+--관리자 공지사항 (이벤트, 공지사항)
+CREATE SEQUENCE notice_seq;
+CREATE TABLE manager_notice (
+    notice_code VARCHAR2(20),
+    id VARCHAR2(20),
+    type CHAR(1), --이벤트 E, 공지사항 N, 당첨자 R
+    title VARCHAR2(500) NOT NULL,
+    contents VARCHAR2(1000) NOT NULL,
+    end_o CHAR(1),
+    write_date DATE NOT NULL,
+    CONSTRAINT manager_notice_code_PK PRIMARY KEY(notice_code),
+    CONSTRAINT manager_notice_id_FK FOREIGN KEY(id) REFERENCES member(id),
+    CONSTRAINT manager_notice_type_CK CHECK(type IN('E', 'N', 'R'))
+);
 
 --의상
 CREATE TABLE costume(
     costume_code VARCHAR2(20), -- cos-head-0000
-    costume_name VARCHAR2(50) NOT NULL,
+    costume_name VARCHAR2(200) NOT NULL,
     price NUMBER(10) NOT NULL,
-    parts VARCHAR2(10),
-    CONSTRAINT costume_code_PK PRIMARY KEY(costume_code),
-    CONSTRAINT costume_parts_CK CHECK(parts IN('head', 'body', 'shoes'))
+    parts VARCHAR2(10) NOT NULL,
+    name VARCHAR2(200) NOT NULL,
+    CONSTRAINT costume_code_PK PRIMARY KEY(costume_code)
 );
-DROP TABLE costume;
-DROP TABLE costume CASCADE CONSTRAINTS;
+CREATE SEQUENCE costume_seq;
+
+--눈
+insert into costume values('cos-'||costume_seq.nextval, '아잉눈', '2', 'eyes', 'aingnun.png');
+insert into costume values('cos-'||costume_seq.nextval, '화난눈', '2', 'eyes', 'angryEyes.png');
+insert into costume values('cos-'||costume_seq.nextval, '울먹눈', '2', 'eyes', 'cryeyes.png');
+
+--머리
+insert into costume values('cos-'||costume_seq.nextval, '나는야 분홍머리', '4', 'head', 'pinkHair.png');
+insert into costume values('cos-'||costume_seq.nextval, '엘레강스 모자', '4', 'head', 'EleganceHat.png');
+insert into costume values('cos-'||costume_seq.nextval, '신사 모자', '4', 'head', 'gentlemanHat.png');
+
+--몸
+insert into costume values('cos-'||costume_seq.nextval, '엘레강스 옷', '5', 'body', 'bluebody.png');
+insert into costume values('cos-'||costume_seq.nextval, '모에 분홍 옷', '5', 'body', 'pinkClothes.png');
+insert into costume values('cos-'||costume_seq.nextval, '멋쟁이 양복', '5', 'body', 'suit.png');
+
+--신발
+insert into costume values('cos-'||costume_seq.nextval, '무쇠 반짝 구두', '1', 'shoes', 'sparklyShoes.png');
+insert into costume values('cos-'||costume_seq.nextval, '오! 참 나이스한 신발', '2', 'shoes', 'niceShoes.png');
+
+select * from costume;
 
 --캐릭터
 CREATE TABLE character(
@@ -52,6 +101,11 @@ CREATE TABLE character(
     CONSTRAINT character_body_FK FOREIGN KEY(body) REFERENCES costume(costume_code),
     CONSTRAINT character_shoes_FK FOREIGN KEY(shoes) REFERENCES costume(costume_code)
 );
+insert into character values('chanbi',NULL,NULL,NULL,NULL);
+
+
+
+
 DROP TABLE character CASCADE CONSTRAINTS;
 -- 보유 의상
 CREATE TABLE holding_costume (
@@ -61,39 +115,6 @@ CREATE TABLE holding_costume (
     CONSTRAINT holding_costume_code_FK FOREIGN KEY(costume_code) REFERENCES costume(costume_code)
 );
 DROP TABLE holding_costume CASCADE CONSTRAINTS;
-
---게시글
-CREATE SEQUENCE post_seq;
-CREATE TABLE post(
-    post_code VARCHAR2(20), --
-    id VARCHAR2(20), --쓴사람
-    write_date DATE NOT NULL,
-    title VARCHAR2(30) NOT NULL,
-    contents VARCHAR2(500) NOT NULL,
-    comment_o CHAR(1),
-    update_date DATE,
-    post_type CHAR(1),
-    CONSTRAINT post_code_PK PRIMARY KEY(post_code),
-    CONSTRAINT post_id_FK FOREIGN KEY(id) REFERENCES member(id),
-    CONSTRAINT post_comment_o_CK CHECK(comment_o IN('O', NULL)),
-    CONSTRAINT post_type_CK CHECK(post_type IN('S', 'B'))
-);
-
-delete post;
-select * from post;
-
---타인이 볼떄
-select * from post where id='chanbi' AND (title like '%더럽%' OR contents like '%더럽%') AND post_type='B' order by 1 desc;
-
-select * from post where id='chanbi' AND (title like '%더럽%' OR contents like '%더럽%') order by 1 desc;
-
-insert into post values('post-'||post_seq.nextval,'chanbi',SYSDATE,'더럽게 안되네','퉤!','O','','B');
-
-select * from post;
-
-DROP TABLE post CASCADE CONSTRAINTS;
-DROP TABLE post;
-DROP SEQUENCE post_seq;
 
 --댓글
 CREATE TABLE post_comment(
@@ -108,62 +129,6 @@ CREATE TABLE post_comment(
 );
 DROP TABLE post_comment CASCADE CONSTRAINTS;
 
---관리자 공지사항 (이벤트, 공지사항)
-CREATE TABLE manager_notice (
-    notice_code VARCHAR2(20),
-    id VARCHAR2(20),
-    type CHAR(1), --이벤트 E, 공지사항 N, 당첨자 R
-    title VARCHAR2(500) NOT NULL,
-    contents VARCHAR2(1000) NOT NULL,
-    end_o CHAR(1),
-    write_date DATE NOT NULL,
-    CONSTRAINT manager_notice_code_PK PRIMARY KEY(notice_code),
-    CONSTRAINT manager_notice_id_FK FOREIGN KEY(id) REFERENCES member(id),
-    CONSTRAINT manager_notice_type_CK CHECK(type IN('E', 'N', 'R'))
-);
-CREATE SEQUENCE notice_seq;
-insert into manager_notice values('notice-'||notice_seq.nextval,'chanbi','E','이벤트닷!','이벤트임!',NULL,SYSDATE);
 
 select * from manager_notice;
 update member set end_o='O' where notice_code='chanbi';
-
-
-
-DROP TABLE manager_notice CASCADE CONSTRAINTS;
-
-
-select ROWNUM, a.*
-from (SELECT id, name, post_num, RANK()OVER (order by post_num desc) rk
-		FROM member
-		ORDER BY rk asc) a
-where ROWNUM <= 4;
-
-
-SELECT id, name, post_num, RANK()OVER (order by post_num desc)
-		FROM member
-		ORDER BY RANK()OVER (order by post_num desc) desc;
-		
-update member set post_num=post_num+1 where id='chanbi';
-
-SELECT id, name, post_num, RANK () OVER(order by post_num desc) alias(rk) FROM member where rk >= 4 ORDER BY rk;
-
-
---대표 게시글
-select table.* from table where condition order by table.col1
-    
-select ROWNUM, a.*
-from (SELECT post_code, id, write_date, title, contents, comment_o, update_date, post_type
-		FROM post
-		where id='chanbi'
-		ORDER BY post_code desc) a
-where ROWNUM <= 1;
-
-
-select ROWNUM, a.*
-from (SELECT *
-		FROM manager_notice
-		where type='N' AND end_o IS null
-		ORDER BY notice_code desc) a
-where ROWNUM <=9;
-
-select * from post where id='chanbi' ORDER BY post_code desc;

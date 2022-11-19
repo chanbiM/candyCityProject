@@ -8,8 +8,8 @@
         <!-- 슬라이드 영역 -->
         <div id="slide">
             <ul>
-                <li><a href="#"><img src="./images/slide1.png" alt="슬라이드1"></a></li>
-                <li><a href="#"><img src="./images/slide2.png" alt="슬라이드2"></a></li>
+                <li><a href="/getNotice?noticeCode=notice-5"><img src="./images/slide1.png" alt="슬라이드1"></a></li>
+                <li><a href="/getNotice?noticeCode=notice-3"><img src="./images/slide2.png" alt="슬라이드2"></a></li>
             </ul>
         </div>
         <!-- 섹션영역 -->

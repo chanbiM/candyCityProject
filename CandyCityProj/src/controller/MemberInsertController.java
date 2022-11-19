@@ -61,8 +61,13 @@ public class MemberInsertController extends HttpServlet {
 		int n = dao.insertMember(vo);
 		
 		if(n > 0) {
-			out.print("<script>alert('회원가입 성공')</script>");
-			response.sendRedirect(contextPath + "/member/login.jsp"); 
+			int n2 = dao.insertChar(vo.getId());
+			if(n2 > 0) {
+				out.print("<script>alert('회원가입 성공')</script>");
+				response.sendRedirect(contextPath + "/member/login.jsp"); 
+			} else {
+				out.print("<script>alert('회원가입 실패'); history.back(); </script>");
+			}
 		} else {
 			out.print("<script>alert('회원가입 실패'); history.back(); </script>");
 		}

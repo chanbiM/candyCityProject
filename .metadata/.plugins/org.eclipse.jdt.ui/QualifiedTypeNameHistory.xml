@@ -7,12 +7,14 @@
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="oracle.sql.DATE"/>
-<fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="common.JdbcUtill"/>
-<fullyQualifiedTypeName name="vo.PostVO"/>
 <fullyQualifiedTypeName name="dao.PostDAO"/>
+<fullyQualifiedTypeName name="vo.PostVO"/>
 <fullyQualifiedTypeName name="vo.MemberVO"/>
 <fullyQualifiedTypeName name="dao.MemberDAO"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="vo.NoticeVO"/>
+<fullyQualifiedTypeName name="dao.adminDAO"/>
 </qualifiedTypeNameHistroy>

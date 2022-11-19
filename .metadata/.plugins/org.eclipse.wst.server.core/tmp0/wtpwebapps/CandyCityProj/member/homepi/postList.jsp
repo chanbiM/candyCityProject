@@ -30,11 +30,8 @@
 			
 			</div>
 			
-			<div class="character_info">
-	<div class="info_character">
-		<!-- 유저캐릭터 전신 삽입-->
-	</div>
-
+	<div class="character_info">
+	<%@ include file="/member/character/charInfo.jsp"%>
 	<!--내 홈피일 경우-->
 	<%
 	if(vo == null) {

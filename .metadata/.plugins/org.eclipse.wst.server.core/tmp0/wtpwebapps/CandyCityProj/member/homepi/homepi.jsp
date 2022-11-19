@@ -17,7 +17,10 @@
 <div class="member_info">
 	<ul>
 		<li>
-			<div class="profile_char"></div>
+			<div class="profile_char">
+			<% String gender = hompiData.getGender(); %>
+				<img alt="프로필사진" src="/images/<%= gender %>Profile.png">
+			</div>
 		</li>
 
 		<li>
@@ -58,9 +61,7 @@
 </div>
 
 <div class="character_info">
-	<div class="info_character">
-		<!-- 유저캐릭터 전신 삽입-->
-	</div>
+	<%@ include file="/member/character/charInfo.jsp"%>
 
 	<!--내 홈피일 경우-->
 	<%
@@ -76,6 +77,7 @@
 		<button id="post_btn">
 			<a href="/member/post/insertPost.jsp">글쓰기</a>
 		</button>
+		<p style="font-size: 16px;">캔디 수: <%= hompiData.getCandy() %>개</p>
 		<% } %>
 		<p style="font-size: 16px;">게시글 수: <%= hompiData.getPostNum() %> &nbsp; 댓글 수: <%= hompiData.getCommentNum() %></p>
 	<% } %>

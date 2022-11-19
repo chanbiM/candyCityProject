@@ -60,10 +60,19 @@ public class PostInsertController extends HttpServlet {
 					result = dao.updatePostNum(memberVo.getId());
 					
 					if(result > 0) {
-						out.print("<script>alert('게시글 작성 성공')</script>");
-						session.setAttribute("loginOK", memberVo);
+						result = 0;
+						result = dao.updateCandyNum(memberVo.getId());
 						
-						response.sendRedirect(contextPath + "/GetPostList?id="+memberVo.getId()); 
+						if(result > 0) {
+							out.print("<script>alert('게시글 작성 성공')</script>");
+							session.setAttribute("loginOK", memberVo);
+							
+							response.sendRedirect(contextPath + "/GetPostList?id="+memberVo.getId());
+							
+						} else {
+							out.print("<script>alert('게시글 작성 실패'); history.back(); </script>");
+						}
+						
 					} else {
 						out.print("<script>alert('게시글 작성 실패'); history.back(); </script>");
 					}

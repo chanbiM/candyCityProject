@@ -328,6 +328,32 @@ public class MemberDAO {
 		return n;
 	}
 	
+	//캐릭터 추가
+	public int insertChar(String id) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into character values(?,NULL,NULL,NULL,NULL)";
+		
+		
+		conn = JdbcUtill.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			n = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		
+		return n;
+		
+	}
 }
 
 	

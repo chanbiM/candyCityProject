@@ -17,13 +17,17 @@ body::-webkit-scrollbar {
     padding: 20px;
 }
 
+.member_info li{
+	height: 100%;
+}
 .member_info ul {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    height: 100%;
 }
 
-.profile_char {
+.profile_char img{
     width: 150px;
     height: 150px;
     background-color: rgb(164, 111, 130);
@@ -68,13 +72,17 @@ input::placeholder {
 }
 
 .info_character {
-    background-color: rgb(164, 111, 130);
     width: 280px;
     border-radius: 20px;
     height: 350px;
     display: flex;
     margin: auto;
     margin-bottom: 5px;
+}
+
+.info_character img {
+	width: 300px;
+	height: 400px;	
 }
 
 #post_btn {

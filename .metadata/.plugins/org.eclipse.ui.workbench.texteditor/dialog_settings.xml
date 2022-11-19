@@ -6,8 +6,12 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="true"/>
 		<item key="isRegEx" value="true"/>
-		<item key="selection" value="sub"/>
+		<item key="selection" value="pro"/>
 		<list key="findhistory">
+			<item value="pro"/>
+			<item value="getH"/>
+			<item value="get"/>
+			<item value="h2"/>
 			<item value="sub"/>
 			<item value="member"/>
 			<item value="font"/>
