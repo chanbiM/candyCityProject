@@ -62,6 +62,7 @@ public class PostInsertController extends HttpServlet {
 					if(result > 0) {
 						result = 0;
 						result = dao.updateCandyNum(memberVo.getId());
+						memberVo.setCandy(memberVo.getCandy()+1);
 						
 						if(result > 0) {
 							out.print("<script>alert('게시글 작성 성공')</script>");

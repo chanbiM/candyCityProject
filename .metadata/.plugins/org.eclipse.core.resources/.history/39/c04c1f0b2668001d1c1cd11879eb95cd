@@ -1,0 +1,200 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JdbcUtill;
+import vo.CharacterVO;
+import vo.CostumeVO;
+import vo.MemberVO;
+import vo.NoticeVO;
+import vo.PostVO;
+
+public class CharacterDAO {
+	
+	//입고 있는 의상 조회
+	public CharacterVO getCharacterCode(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from character where id=?";
+		CharacterVO result = new CharacterVO();
+		
+		conn = JdbcUtill.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result.setId(rs.getString("id"));
+				result.setHead(rs.getString("head"));
+				result.setEyes(rs.getString("eyes"));
+				result.setBody(rs.getString("body"));
+				result.setShoes(rs.getString("shoes"));
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
+	
+	//의상 조회
+	public CostumeVO getCostumeInfo(String costumeCode) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from costume where costume_code=?";
+		CostumeVO result = new CostumeVO();
+		
+		conn = JdbcUtill.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, costumeCode);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result.setCostumeCode(rs.getString("costume_code"));
+				result.setCostumeName(rs.getString("costume_name"));
+				result.setPrice(rs.getInt("price"));
+				result.setParts(rs.getString("parts"));
+				result.setName(rs.getString("name"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
+	
+	//가지고 있는 의상 리스트 조회
+	public ArrayList<CostumeVO> getCosList(String id){
+		ArrayList<CostumeVO> list = new ArrayList<CostumeVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select c.* from costume c, (select * from holding_costume where id=?) h where c.costume_code = h.costume_code";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				CostumeVO vo = new CostumeVO();
+				vo.setCostumeCode(rs.getString("costume_code"));
+				vo.setCostumeName(rs.getString("costume_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setParts(rs.getString("parts"));
+				vo.setName(rs.getString("name"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	//의상 상점, 살 수 있는 것 조회
+	public ArrayList<CostumeVO> getShopList(String id){
+		ArrayList<CostumeVO> list = new ArrayList<CostumeVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select c.* from costume c left join (select costume_code from holding_costume where id=?) h on h.costume_code=c.costume_code where h.costume_code is NULL order by costume_name";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				CostumeVO vo = new CostumeVO();
+				vo.setCostumeCode(rs.getString("costume_code"));
+				vo.setCostumeName(rs.getString("costume_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setParts(rs.getString("parts"));
+				vo.setName(rs.getString("name"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
+	//의상 구매
+	public int buyCos(String id, String costumeCode) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into holding_costume values(?,?)";
+	
+		conn = JdbcUtill.getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, costumeCode);
+			
+			n = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		
+		return n;
+	}
+	//캔디 업데이트
+	public int updateCandyNum(String id, int price) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update member set candy=candy-? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, price);
+			pstmt.set
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+}

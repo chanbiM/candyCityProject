@@ -1,12 +1,42 @@
+<%@page import="vo.CostumeVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="/css/characterStyle.css">
 
-</body>
-</html>
+	<br>
+<%
+	ArrayList<CostumeVO> shopList = (ArrayList<CostumeVO>)request.getAttribute("shopList");
+%>
+	<h2>의상 상점</h2> <br>
+	<p>내 캔디: <%= vo.getCandy() %></p>
+<%
+	if(shopList.isEmpty()){
+%>
+		<h3>살 수 있는 의상이 없습니다.</h3>
+<%
+	} else {
+%>
+	
+	<ul class="mainList">
+	<% 
+		int n = 1;
+		for(CostumeVO data : shopList) { 
+	%>
+		<li>
+			<ul class="subList">
+				<li><img alt="의상" src="/images/costume/<%= data.getName() %>"></li>
+				<li><%= data.getCostumeName() %> <br> 필요한 캔디 수: <%= data.getPrice() %></li>
+				<li><a href="/buyCos?costumeCode=<%= data.getCostumeCode() %>&id=<%= vo.getId() %>&price=<%= data.getPrice() %>" class="buyBtn"><button class="buyBtn">구매</button></a></li>
+			</ul>		
+		</li>
+	<%
+	}%>
+	</ul>
+	<% } %>
+		
+	
+
+<%@ include file="/footer.jsp"%>

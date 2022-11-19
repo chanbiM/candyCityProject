@@ -1,0 +1,44 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.CharacterDAO;
+import vo.CostumeVO;
+
+@WebServlet("/getcCostumeList")
+public class GetcCostumeListController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public GetcCostumeListController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		CharacterDAO dao = new CharacterDAO();
+		String id = request.getParameter("id");
+		String userName = request.getParameter("name");
+		
+		ArrayList<CostumeVO> costumeList = dao.getCosList(id);
+		
+		request.setAttribute("costumeList", costumeList);
+		request.setAttribute("name", userName);
+		
+		request.getRequestDispatcher("/member/character/myCostumeList.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

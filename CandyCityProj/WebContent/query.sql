@@ -146,4 +146,11 @@ select * from costume;
 
 --의상 확인하기
 select c.* from costume c, (select * from holding_costume where id='chanbi') h where c.costume_code = h.costume_code;
-	
+
+--의상 상점
+select c.*
+from costume c
+left join (select costume_code from holding_costume where id='chanbi') h  
+on h.costume_code=c.costume_code
+where h.costume_code is NULL
+order by costume_name;

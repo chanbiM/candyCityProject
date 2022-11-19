@@ -14,7 +14,6 @@ h3 {
 .mainList li {
 	width: 25%;
 	display: flex;
-	flex-wrap:wrap; 
 	justify-content: center;
 	
 }
@@ -30,4 +29,17 @@ h3 {
 	border-top: 2px solid #9a4f74;
 	overflow: hidden;
 
+}
+
+.buyBtn {
+	width: 100%;
+	background-color: #e8449a;
+	
+}
+a {
+	width: 100%;
+}
+.buyBtn:hover {
+	background-color: #941256;
+	color: white;
 }

@@ -2,6 +2,9 @@ body {
     -ms-overflow-style: none;
 }
 
+a:hover {
+	cursor: pointer;
+}
 body::-webkit-scrollbar {
     display: none;
 }

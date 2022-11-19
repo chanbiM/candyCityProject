@@ -84,12 +84,13 @@
 	} else {
 	%>
 		<% if(vo.getId().equals(hompiData.getId())) {%>
-		<a href="#" style="color: #804d66;">캐릭터 설정</a><br> <br>
+		<p style="font-size: 16px;">캔디 수: <%= hompiData.getCandy() %>개</p>
+			<p style="font-size: 16px;">게시글 수: <%= hompiData.getPostNum() %> &nbsp; 댓글 수: <%= hompiData.getCommentNum() %></p>
 		<button id="post_btn">
 			<a href="/member/post/insertPost.jsp">글쓰기</a>
-		</button>
+		</button><br>
+		<a href="/characterSet?id=<%= hompiData.getId() %>" style="color: #804d66;">캐릭터 설정</a><br> <br>
 		<% } %>
-		<p style="font-size: 16px;">게시글 수: <%= hompiData.getPostNum() %> &nbsp; 댓글 수: <%= hompiData.getCommentNum() %></p>
 	<% } %>
 
 </div>

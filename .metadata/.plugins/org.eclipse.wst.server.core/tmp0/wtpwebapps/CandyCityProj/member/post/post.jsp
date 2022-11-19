@@ -66,12 +66,13 @@
 	} else {
 	%>
 		<% if(vo.getId().equals(postData.getId())) {%>
-		<a href="#" style="color: #804d66;">캐릭터 설정</a><br> <br>
+		<p style="font-size: 16px;"><%= homepiName %>님의 게시글</p> <br>
 		<button id="post_btn">
 			<a href="/member/post/insertPost.jsp">글쓰기</a>
-		</button>
+		</button><br>
+		<a href="/characterSet?id=<%= postData.getId() %>" style="color: #804d66;">캐릭터 설정</a><br> <br>
 		<% } %>
-		<p style="font-size: 16px;"><%= homepiName %>님의 게시글</p>
+		
 	<% } %>
 </div>
 	

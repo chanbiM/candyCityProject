@@ -1,0 +1,70 @@
+package controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.MemberDAO;
+import vo.MemberVO;
+
+@WebServlet("/buyCos")
+public class BuyCosController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public BuyCosController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		MemberDAO dao = new MemberDAO();
+		MemberVO vo = new MemberVO();
+		int result = 0;
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String id = request.getParameter("id");
+		String costumeCode = request.getParameter("costumeCode");
+		
+		String contextPath = request.getContextPath();
+		
+		if (request.getParameter("id")== null || request.getParameter("name") == null
+				|| request.getParameter("pwd") == null || gender == null) {
+			out.print("<script>alert('비어있는 칸이 존재합니다.'); history.back(); </script>");
+		}
+		
+		result = dao.getMemberId(request.getParameter("id"));
+		
+		if(result) {
+			out.print("<script>alert('동일한 id가 존재합니다'); history.back()</script>");
+			
+		}
+		
+		int n = dao.insertMember(vo);
+		
+		if(n > 0) {
+			int n2 = dao.insertChar(vo.getId());
+			if(n2 > 0) {
+				out.print("<script>alert('회원가입 성공')</script>");
+				response.sendRedirect(contextPath + "/member/login.jsp"); 
+			} else {
+				out.print("<script>alert('회원가입 실패'); history.back(); </script>");
+			}
+		} else {
+			out.print("<script>alert('회원가입 실패'); history.back(); </script>");
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

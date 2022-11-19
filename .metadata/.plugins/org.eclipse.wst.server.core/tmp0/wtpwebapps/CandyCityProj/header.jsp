@@ -33,14 +33,12 @@
 					%>
 					<li><a href="/member/login.jsp">로그인</a></li>
 					<li><a href="/member/insertMember.jsp">회원가입</a></li>
-					<li><a href="#">이용안내</a></li>
 					<%
 						} else {
 					%>
 					<li><a href="/member/myPage.jsp"><%=vo.getName()%>님</a></li>
 					<li><a href="/logout"> 로그아웃 </a></li>
 					<li><a href="/member/myPage.jsp">마이페이지</a></li>
-					<li><a href="#">이용안내</a></li>
 
 					<%
 						}
@@ -71,17 +69,17 @@
 					%>
 					</ul></li>
 
-				<li><a href="/character/shop.jsp">의상</a>
+				<li><a href="#">의상</a>
 					<ul class="submenu">
 					<%
 						if (vo == null) {
 					%>
 						<li><a href="/member/login.jsp">내 의상</a></li>
-						<li><a href="/character/shop.jsp">의상 상점</a></li>
+						<li><a href="/member/login.jsp">의상 상점</a></li>
 					<% } else {
 					%>
 						<li><a href="/getcCostumeList?id=<%= vo.getId() %>&name=<%= vo.getName() %>">내 의상</a></li>
-						<li><a href="/character/shop.jsp">의상 상점</a></li>
+						<li><a href="/getShopList?id=<%= vo.getId() %>">의상 상점</a></li>
 					<%	
 					} %>
 					</ul></li>
