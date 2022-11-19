@@ -1,0 +1,9 @@
+package vo;
+
+public class CostumeVO {
+	private String costumeCode;
+	private int price;
+	private String costumeName;
+	private String parts;
+	private String name;
+}

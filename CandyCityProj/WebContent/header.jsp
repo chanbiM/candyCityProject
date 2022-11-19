@@ -81,7 +81,7 @@
 					<ul class="submenu">
 					</ul></li>
 
-				<li><a href="#">공지사항</a>
+				<li><a href="/getNoticeList?type=E">공지사항</a>
 					<ul class="submenu">
 						<li><a href="/getNoticeList?type=E">이벤트</a></li>
 						<li><a href="/getNoticeList?type=N">공지사항</a></li>

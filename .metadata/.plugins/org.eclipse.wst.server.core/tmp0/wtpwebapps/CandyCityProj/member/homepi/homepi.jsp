@@ -1,3 +1,7 @@
+<%@page import="com.sun.istack.internal.NotNull"%>
+<%@page import="vo.CostumeVO"%>
+<%@page import="vo.CharacterVO"%>
+<%@page import="dao.CharacterDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.PostDAO"%>
 <%@page import="vo.PostVO"%>
@@ -51,17 +55,53 @@
 
 			</div>
 		</li>
-		<li>
-			<!--팝업형식-->
-			<button id="homepi_info">미니홈피 정보</button>
-		</li>
 	</ul>
 
 
 </div>
 
 <div class="character_info">
-	<%@ include file="/member/character/charInfo.jsp"%>
+	<div class="info_character">
+<% 
+			CharacterDAO charDao = new CharacterDAO();
+			CharacterVO charVo = new CharacterVO();
+			
+			charVo = charDao.getCharacterCode(hompiData.getId());
+			
+			CostumeVO head = new CostumeVO();
+			CostumeVO eyes = new CostumeVO();
+			CostumeVO body = new CostumeVO();
+			CostumeVO shoes = new CostumeVO();
+			
+			head = charDao.getCostumeInfo(charVo.getHead());
+			eyes = charDao.getCostumeInfo(charVo.getEyes());
+			body = charDao.getCostumeInfo(charVo.getBody());
+			shoes = charDao.getCostumeInfo(charVo.getShoes());
+			
+			if(charVo.getHead() != null){
+%>
+				<img alt="머리" src="/images/costume/<%= head.getName() %>" class="head">
+<%
+			}
+			if(charVo.getEyes() != null){
+%>
+				<img alt="눈" src="/images/costume/<%= eyes.getName() %>" class="eyes">
+<%
+			}if(charVo.getBody() != null){
+%>
+				<img alt="몸" src="/images/costume/<%= body.getName() %>" class="body">
+<%
+			} if(charVo.getShoes() != null){
+%>
+				<img alt="신발" src="/images/costume/<%= shoes.getName() %>" class="shoes">
+<%
+			}
+			
+%>
+
+
+		<img alt="캐릭터" src="/images/costume/character.png">
+	</div>
 
 	<!--내 홈피일 경우-->
 	<%

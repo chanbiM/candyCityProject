@@ -1,0 +1,9 @@
+package vo;
+
+public class CharacterVO {
+	private String id;
+	private String head;
+	private String eyes;
+	private String body;
+	private String shoes;
+}

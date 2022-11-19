@@ -102,11 +102,12 @@ CREATE TABLE character(
     CONSTRAINT character_shoes_FK FOREIGN KEY(shoes) REFERENCES costume(costume_code)
 );
 insert into character values('chanbi',NULL,NULL,NULL,NULL);
+select * from character;
+
+update character set eyes='cos-1',head='cos-5',body='cos-7', shoes='cos-11' where id='chanbi';
 
 
 
-
-DROP TABLE character CASCADE CONSTRAINTS;
 -- 보유 의상
 CREATE TABLE holding_costume (
     id VARCHAR2(20),
@@ -115,6 +116,12 @@ CREATE TABLE holding_costume (
     CONSTRAINT holding_costume_code_FK FOREIGN KEY(costume_code) REFERENCES costume(costume_code)
 );
 DROP TABLE holding_costume CASCADE CONSTRAINTS;
+
+select * from costume;
+insert into holding_costume values('chanbi', 'cos-1');
+insert into holding_costume values('chanbi', 'cos-5');
+insert into holding_costume values('chanbi', 'cos-11');
+insert into holding_costume values('chanbi', 'cos-7');
 
 --댓글
 CREATE TABLE post_comment(
@@ -132,3 +139,6 @@ DROP TABLE post_comment CASCADE CONSTRAINTS;
 
 select * from manager_notice;
 update member set end_o='O' where notice_code='chanbi';
+
+
+

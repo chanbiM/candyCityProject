@@ -213,3 +213,23 @@ hr {
     height: 40px;
 }
 
+.head {
+	position: absolute;
+	left: 21.5%;
+}
+
+.eyes {
+	position: absolute;
+	left: 21.5%;
+}
+
+.body {
+	position: absolute;
+	left: 21.5%;
+}
+
+.shoes {
+	position: absolute;
+	left: 21.5%;
+}
+
