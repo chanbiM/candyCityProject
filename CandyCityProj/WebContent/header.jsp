@@ -73,8 +73,17 @@
 
 				<li><a href="/character/shop.jsp">의상</a>
 					<ul class="submenu">
-						<li><a href="/character/character_setting.jsp">내 의상</a></li>
+					<%
+						if (vo == null) {
+					%>
+						<li><a href="/member/login.jsp">내 의상</a></li>
 						<li><a href="/character/shop.jsp">의상 상점</a></li>
+					<% } else {
+					%>
+						<li><a href="/getcCostumeList?id=<%= vo.getId() %>&name=<%= vo.getName() %>">내 의상</a></li>
+						<li><a href="/character/shop.jsp">의상 상점</a></li>
+					<%	
+					} %>
 					</ul></li>
 
 				<li><a href="#">캔디시티</a>

@@ -141,4 +141,9 @@ select * from manager_notice;
 update member set end_o='O' where notice_code='chanbi';
 
 
+select * from holding_costume where id='chanbi';
+select * from costume;
 
+--의상 확인하기
+select c.* from costume c, (select * from holding_costume where id='chanbi') h where c.costume_code = h.costume_code;
+	

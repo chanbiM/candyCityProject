@@ -1153,3 +1153,32 @@ Java Model Exception: Java Model Status [Unknown javadoc format for GetInstance 
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 !SUBENTRY 1 org.eclipse.jdt.core 4 1009 2022-11-19 22:20:30.594
 !MESSAGE Unknown javadoc format for GetInstance [in GetInstance.class [in sun.security.jca [in C:\Program Files\Java\jdk1.8.0_321\jre\lib\rt.jar]]]
+
+!ENTRY org.eclipse.jface 2 0 2022-11-19 23:08:15.910
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-11-19 23:08:15.910
+!MESSAGE A conflict occurred for CTRL+SHIFT+P:
+Binding(CTRL+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.sqleditor.GotoMatchingTokenAction,Goto Matching Token,
+		,
+		Category(org.eclipse.datatools.sqltools.sqleditor.category,Database Tools,Database Development tools,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@10f188f9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.datatools.sqltools.SQLEditorScope,,,system)
+Binding(CTRL+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.m2e.core.ui.command.addPlugin,Add Maven Plugin,
+		Add Maven plugin,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2407665c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.core.runtime.xml,,,system)
+Binding(CTRL+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.goto.matching.bracket,Matching Character,
+		Go to Matching Character,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@a27c4ec,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)

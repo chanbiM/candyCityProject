@@ -1,0 +1,30 @@
+<%@page import="vo.CostumeVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+
+	<br>
+<%
+	ArrayList<CostumeVO> costumeList = (ArrayList<CostumeVO>)request.getAttribute("costumeList");
+	String userName = (String) request.getAttribute("name");
+%>
+	<h2>가지고 있는 의상</h2> <br>>
+	<ul class="mainList">
+	<% for(CostumeVO data : costumeList) { 
+		System.out.print(data.getCostumeName());
+	%>
+		<li>
+			<ul class="subList">
+				<li><img alt="의상" src="/images/costume/<%= data.getName() %>"></li>
+				<li><%= data.getCostumeName() %></li>
+			</ul>		
+		</li>
+	<%
+	}%>
+	</ul>
+		
+	
+
+<%@ include file="/footer.jsp"%>

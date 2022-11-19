@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.mainList {
+	width: 100%;
+	display: flex;
+	flex-wrap:wrap;
+}
+
+.mainList li {
+	width: 25%;
+	display: flex;
+	flex-wrap:wrap; 
+	justify-content: center;
+}
+
+.subList {
+	width: 100%;
+	border: 2px solid #9a4f74;
+}
+
+.subList li{
+	width: 100%;
+	text-align: center;
+	border-top: 2px solid #9a4f74;
+	overflow: hidden;
+
+}

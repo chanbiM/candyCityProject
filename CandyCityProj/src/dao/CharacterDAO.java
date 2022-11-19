@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JdbcUtill;
 import vo.CharacterVO;
@@ -74,5 +76,40 @@ public class CharacterDAO {
 		}
 		
 		return result;
+	}
+	
+	//가지고 있는 의상 리스트 조회
+	public ArrayList<CostumeVO> getCosList(String id){
+		ArrayList<CostumeVO> list = new ArrayList<CostumeVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select c.* from costume c, (select * from holding_costume where id=?) h where c.costume_code = h.costume_code";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				CostumeVO vo = new CostumeVO();
+				vo.setCostumeCode(rs.getString("costume_code"));
+				vo.setCostumeName(rs.getString("costume_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setParts(rs.getString("parts"));
+				vo.setName(rs.getString("name"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
 	}
 }

@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.mainList {
+	width: 100%;
+	display: flex;
+}
+
+.mainList li {
+	margin: 30px;
+}
+
+.subList {
+	display: block;
+}
