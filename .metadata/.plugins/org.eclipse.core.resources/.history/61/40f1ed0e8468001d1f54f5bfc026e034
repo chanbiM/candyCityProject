@@ -1,0 +1,62 @@
+<%@page import="dao.CharacterDAO"%>
+<%@page import="vo.CharacterVO"%>
+<%@page import="vo.CostumeVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="/css/characterStyle.css">
+
+	<br>
+<%
+	CharacterDAO charDao = new CharacterDAO();
+	ArrayList<CostumeVO> costumeList = (ArrayList<CostumeVO>)request.getAttribute("costumeList");
+	CharacterVO costume = (CharacterVO) request.getAttribute("costume");
+	
+	CostumeVO head = charDao.getCostumeInfo(costume.getEyes());
+	CostumeVO eyes = charDao.getCostumeInfo(charVo.getEyes());
+	CostumeVO body = charDao.getCostumeInfo(charVo.getBody());
+	CostumeVO shoes = charDao.getCostumeInfo(charVo.getShoes());
+	
+	head = 
+	eyes = charDao.getCostumeInfo(charVo.getEyes());
+	body = charDao.getCostumeInfo(charVo.getBody());
+	shoes = charDao.getCostumeInfo(charVo.getShoes());
+%>
+	<h2>의상 설정</h2> <br>
+	<!-- 저장 -->
+	
+	<!-- 착용샷 보여주기 -->
+	
+	
+	
+	<!-- 의상 목록 -->
+<%
+	if(costumeList.isEmpty()){
+%>
+		<h3>의상이 없습니다.</h3>
+<%
+	} else {
+%>
+	
+	<ul class="mainList">
+	<% 
+		int n = 1;
+		for(CostumeVO data : costumeList) { 
+	%>
+		<li>
+			<ul class="subList">
+				<li><img alt="의상" src="/images/costume/<%= data.getName() %>"></li>
+				<li><%= data.getCostumeName() %></li>
+				<li><a href="/SetCos?costumeCode=<%= data.getCostumeCode() %>&id=<%= vo.getId() %>" class="buyBtn"><button class="setBtn">착용</button></a></li>
+			</ul>		
+		</li>
+	<%
+	}%>
+	</ul>
+	<% } %>
+		
+	
+
+<%@ include file="/footer.jsp"%>

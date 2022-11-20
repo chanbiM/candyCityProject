@@ -1,7 +1,0 @@
-@charset "UTF-8";
-.wrapper {
-	margin: auto;
-}
-.mainList {
-	width: 100%;
-}

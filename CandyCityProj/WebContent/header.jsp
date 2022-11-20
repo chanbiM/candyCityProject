@@ -76,10 +76,12 @@
 					%>
 						<li><a href="/member/login.jsp">내 의상</a></li>
 						<li><a href="/member/login.jsp">의상 상점</a></li>
+						<li><a href="/member/login.jsp">의상 설정</a></li>
 					<% } else {
 					%>
 						<li><a href="/getcCostumeList?id=<%= vo.getId() %>&name=<%= vo.getName() %>">내 의상</a></li>
 						<li><a href="/getShopList?id=<%= vo.getId() %>">의상 상점</a></li>
+						<li><a href="/characterSet">의상 설정</a></li>
 					<%	
 					} %>
 					</ul></li>

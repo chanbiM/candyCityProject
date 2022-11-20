@@ -72,7 +72,7 @@
 			
 %>	
 		
-		<img alt="캐릭터" src="/images/costume/character.png">
+		<img alt="캐릭터" src="/images/costume/character.png" class="character">
 	</div>
 	<!--내 홈피일 경우-->
 	<%

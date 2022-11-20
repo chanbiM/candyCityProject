@@ -103,7 +103,6 @@ CREATE TABLE character(
 );
 insert into character values('chanbi',NULL,NULL,NULL,NULL);
 select * from character;
-
 update character set eyes='cos-1',head='cos-5',body='cos-7', shoes='cos-11' where id='chanbi';
 
 

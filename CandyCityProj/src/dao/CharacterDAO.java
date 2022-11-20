@@ -197,4 +197,92 @@ public class CharacterDAO {
 		}
 		return n;
 	}
+
+	//머리 의상 수정
+	public int updateHeadCos(String id, String costumeCode) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update character set head=? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, costumeCode);
+			pstmt.setString(2, id);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+	
+	//눈 수정
+	public int updateEyesCos(String id, String costumeCode) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update character set eyes=? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, costumeCode);
+			pstmt.setString(2, id);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+	
+	//몸 수정
+	public int updateBodyCos(String id, String costumeCode) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update character set body=? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, costumeCode);
+			pstmt.setString(2, id);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+	
+	//신발 수정
+	public int updateShoesCos(String id, String costumeCode) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update character set shoes=? where id=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, costumeCode);
+			pstmt.setString(2, id);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
 }

@@ -85,7 +85,8 @@ input::placeholder {
 
 .info_character img {
 	width: 300px;
-	height: 400px;	
+	height: 400px;
+	position: absolute;
 }
 
 #post_btn {
@@ -217,22 +218,23 @@ hr {
 }
 
 .head {
-	position: absolute;
-	left: 21.5%;
+	z-index: 60;
 }
 
 .eyes {
-	position: absolute;
-	left: 21.5%;
+	z-index: 59;
 }
 
 .body {
-	position: absolute;
-	left: 21.5%;
+	z-index: 61;
 }
 
 .shoes {
-	position: absolute;
-	left: 21.5%;
+	z-index: 58;
+}
+
+.character {
+	z-index: 50;
+	
 }
 

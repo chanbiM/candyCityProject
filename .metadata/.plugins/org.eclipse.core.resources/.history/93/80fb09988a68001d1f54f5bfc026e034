@@ -1,0 +1,36 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/SetCos")
+public class SetCosController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+    public SetCosController() {
+        super();
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//입고있던 의상 불러냄
+		
+		//수정하고 셋
+		
+		//저장은 업데이트로 헤드 이런거 링크에 넣고 업데이트
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
