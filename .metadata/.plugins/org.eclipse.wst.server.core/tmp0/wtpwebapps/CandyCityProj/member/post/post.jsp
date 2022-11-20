@@ -120,12 +120,7 @@
 								</button>
 							</div>
 	
-							<%
-								if(postData.getCommentO().equals("O")){
-							%>
-									<p>댓글창</p><br>
-									<hr>
-							<% } %>
+							
 							
                	
       </div>

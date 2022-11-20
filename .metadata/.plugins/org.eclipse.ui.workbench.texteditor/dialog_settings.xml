@@ -6,23 +6,23 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="true"/>
 		<item key="isRegEx" value="true"/>
-		<item key="selection" value="up"/>
+		<item key="selection" value="대표"/>
 		<list key="findhistory">
+			<item value="대표"/>
+			<item value="댓글"/>
+			<item value="member"/>
+			<item value="memberI"/>
+			<item value="mem"/>
 			<item value="up"/>
 			<item value="pro"/>
 			<item value="getH"/>
 			<item value="get"/>
 			<item value="h2"/>
 			<item value="sub"/>
-			<item value="member"/>
 			<item value="font"/>
 			<item value="color"/>
 			<item value="ga"/>
 			<item value="gall"/>
-			<item value="comment_num"/>
-			<item value="post_num"/>
-			<item value="write_date"/>
-			<item value="postOption"/>
 		</list>
 		<list key="replacehistory">
 			<item value="vo"/>

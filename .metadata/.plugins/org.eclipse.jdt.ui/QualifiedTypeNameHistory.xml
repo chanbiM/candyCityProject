@@ -14,12 +14,12 @@
 <fullyQualifiedTypeName name="dao.MemberDAO"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="vo.NoticeVO"/>
-<fullyQualifiedTypeName name="dao.adminDAO"/>
 <fullyQualifiedTypeName name="java.lang.Character"/>
-<fullyQualifiedTypeName name="vo.CharacterVO"/>
 <fullyQualifiedTypeName name="vo.CostumeVO"/>
 <fullyQualifiedTypeName name="dao.CharacterDAO"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="vo.MemberVO"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="vo.CharacterVO"/>
+<fullyQualifiedTypeName name="dao.adminDAO"/>
 </qualifiedTypeNameHistroy>
