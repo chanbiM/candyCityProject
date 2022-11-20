@@ -109,6 +109,17 @@
 					<th class="name">
 						날짜
 					</th>
+					<%
+					if(vo != null) {
+					%>
+						<% if(vo.getId().equals(hompiData.getId())) {%>
+							<th>삭제</th>
+						<% } %>
+					<%
+					} else {
+					%>
+						
+					<% } %>
 				</tr>
 
 				<%
@@ -135,6 +146,17 @@
                 				}
                 			%>
 						</td>
+						<%
+					if(vo != null) {
+					%>
+						<% if(vo.getId().equals(hompiData.getId())) {%>
+							<td><a href="/deletePost?postCode=<%= data.getPostCode()%>">삭제</a></td>
+						<% } %>
+					<%
+					} else {
+					%>
+						
+					<% } %>
 				</tr>
 					<% num++; %>
 				<% } %>

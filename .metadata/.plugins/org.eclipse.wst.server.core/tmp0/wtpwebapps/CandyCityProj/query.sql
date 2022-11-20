@@ -148,4 +148,3 @@ where condition order by .col1
 select ROWNUM, a.* from (SELECT * FROM member where to_date(login_date, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD') ORDER BY login_date desc) a where ROWNUM <= 4
 
 
-

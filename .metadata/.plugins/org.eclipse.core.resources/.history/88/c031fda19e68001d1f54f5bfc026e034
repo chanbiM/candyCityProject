@@ -1,0 +1,275 @@
+package dao;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JdbcUtill;
+import vo.MemberVO;
+import vo.PostVO;
+
+public class PostDAO {
+	//게시글 작성
+	public int insertPost(PostVO postVo, MemberVO memberVo) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into post values('post-'||post_seq.nextval,?,SYSDATE,?,?,?,'',NULL)";
+	
+		conn = JdbcUtill.getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(2, postVo.getTitle());
+			pstmt.setString(3, postVo.getContents());
+			pstmt.setString(4, postVo.getCommentO());
+			
+	
+			n = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		
+		return n;
+	}
+	
+	//게시글 수 업데이트
+		public int updatePostNum(String id) {
+			int n = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "update member set post_num=post_num+1 where id=?";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				n = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt);
+			}
+			return n;
+		}
+		
+		//대표게시글 불러오기
+		public ArrayList<PostVO> getRepresentativePost(String id){
+			ArrayList<PostVO> list = new ArrayList<PostVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select ROWNUM, a.* " + 
+					"from (SELECT post_code, id, write_date, title, contents, comment_o, update_date, post_type " + 
+					"FROM post " + 
+					"where id=?" + 
+					"ORDER BY post_code desc) a " + 
+					"where ROWNUM <= 1";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PostVO vo = new PostVO();
+					vo.setPostCode(rs.getString("post_code"));
+					vo.setId(rs.getString("id"));
+					vo.setWriteDate(rs.getDate("write_date"));
+					vo.setTitle(rs.getString("title"));
+					vo.setContents(rs.getString("contents"));
+					vo.setCommentO(rs.getString("comment_o"));
+					vo.setUpdateDate(rs.getDate("update_date"));
+					vo.setPostType(rs.getString("post_type"));
+					
+					list.add(vo);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("테이블 데이터 조회 실패");
+			} finally {
+				 JdbcUtill.close(conn, pstmt, rs);
+			}
+			return list;
+		}
+		
+		//홈피 포스트 게시글 목록 조회
+		public ArrayList<PostVO> getPost(String id){
+			ArrayList<PostVO> list = new ArrayList<PostVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from post where id=? ORDER BY post_code desc";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PostVO vo = new PostVO();
+					vo.setPostCode(rs.getString("post_code"));
+					vo.setId(rs.getString("id"));
+					vo.setWriteDate(rs.getDate("write_date"));
+					vo.setTitle(rs.getString("title"));
+					vo.setContents(rs.getString("contents"));
+					vo.setCommentO(rs.getString("comment_o"));
+					vo.setUpdateDate(rs.getDate("update_date"));
+					vo.setPostType(rs.getString("post_type"));
+					
+					list.add(vo);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("테이블 데이터 조회 실패");
+			} finally {
+				 JdbcUtill.close(conn, pstmt, rs);
+			}
+			return list;
+		}
+		
+		//검색
+		public ArrayList<PostVO> getSearchHomepiPost(String key, MemberVO homepiData){
+			ArrayList<PostVO> list = new ArrayList<PostVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql;
+			String str = "%" + key + "%";
+			
+			conn = JdbcUtill.getConnection();
+			
+
+			try {
+				if (key.equals("all")) {
+					sql = "select * from post where id=? order by 1 desc";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, homepiData.getId());
+					
+				} else {
+					sql = "select * from post where id=? AND (title like ? OR contents like ?) order by 1 desc";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, homepiData.getId());
+					pstmt.setString(2, str);
+					pstmt.setString(3, str);
+				}
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PostVO vo = new PostVO();
+					vo.setPostCode(rs.getString("post_code"));
+					vo.setId(rs.getString("id"));
+					vo.setWriteDate(rs.getDate("write_date"));
+					vo.setTitle(rs.getString("title"));
+					vo.setContents(rs.getString("contents"));
+					vo.setCommentO(rs.getString("comment_o"));
+					vo.setUpdateDate(rs.getDate("update_date"));
+					vo.setPostType(rs.getString("post_type"));
+					
+					list.add(vo);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("테이블 데이터 조회 실패");
+			} finally {
+				 JdbcUtill.close(conn, pstmt, rs);
+			}
+			
+			return list;
+		}
+		
+		//게시글 내용 조회
+		public PostVO getPostInfo(String homepiId, String PostCode) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from post where id=? and post_code=?";
+			PostVO result = new PostVO();
+			
+			conn = JdbcUtill.getConnection();
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, homepiId);
+				pstmt.setString(2, PostCode);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result.setPostCode(rs.getString("post_code"));
+					result.setTitle(rs.getString("title"));
+					result.setContents(rs.getString("contents"));
+					result.setId(rs.getString("id"));
+					result.setUpdateDate(rs.getDate("update_date"));
+					result.setWriteDate(rs.getDate("write_date"));
+					result.setCommentO(rs.getString("comment_o"));
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt, rs);
+			}
+			
+			return result;
+		}
+		
+		//캔디 업데이트
+		public int updateCandyNum(String id) {
+			int n = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "update member set candy=candy+1 where id=?";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				n = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt);
+			}
+			return n;
+		}
+		
+		public int deletePost(String id) {
+			int n = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "delete where post_code=?";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				n = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt);
+			}
+			return n;
+		}
+}

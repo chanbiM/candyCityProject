@@ -30,17 +30,6 @@
 		<li>
 			<div class="info">
 				<p><%=hompiData.getName()%>(<%=hompiData.getId()%>) <br>
-					<%
-						if (hompiData.getIntroduce() == null) {
-					%>
-					한줄 소개가 없습니다.
-					<%
-						} else {
-					%>
-					<%=hompiData.getJoin_num()%>
-					<%
-						}
-					%>
 				</p>
 				<br>
 				<p>

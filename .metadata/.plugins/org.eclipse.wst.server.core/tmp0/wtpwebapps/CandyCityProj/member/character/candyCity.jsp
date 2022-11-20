@@ -14,7 +14,7 @@
 <%
 	ArrayList<MemberVO> candiCityList = (ArrayList<MemberVO>) request.getAttribute("candiCityList");
 %>
-<h2>캔디시티</h2>
+<h2>캔디시티 (최근 방문자)</h2>
 <br>
 
 <div class="candyCity">

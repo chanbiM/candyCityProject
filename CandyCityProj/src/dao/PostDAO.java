@@ -252,4 +252,46 @@ public class PostDAO {
 			}
 			return n;
 		}
+		
+		//게시글 삭제
+		public int deletePost(String postCode) {
+			int n = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "delete post where post_code=?";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, postCode);
+				
+				n = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt);
+			}
+			return n;
+		}
+		//게시글 수 조정
+		public int updateMinusPostNum(String id) {
+			int n = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "update member set post_num=post_num-1 where id=?";
+			
+			try {
+				conn = JdbcUtill.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				n = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtill.close(conn, pstmt);
+			}
+			return n;
+		}
+		
 }
