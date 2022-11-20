@@ -1,0 +1,201 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JdbcUtill;
+import vo.MemberVO;
+import vo.NoticeVO;
+import vo.PostVO;
+
+public class adminDAO {
+	//공지사항 작성
+	public int insertNotice(NoticeVO vo, MemberVO memberVo) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into manager_notice values('notice-'||notice_seq.nextval,?,?,?,?,NULL,SYSDATE)";
+	
+		conn = JdbcUtill.getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(2, vo.getType());
+			pstmt.setString(3, vo.getTitle());
+			pstmt.setString(4, vo.getContents());
+			
+			n = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		
+		return n;
+	}
+	
+	//이벤트 게시글 조회
+	public ArrayList<NoticeVO> getNoticeList(String type) {
+		ArrayList<NoticeVO> list = new ArrayList<NoticeVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from manager_notice where type=? ORDER BY notice_code desc";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				NoticeVO vo = new NoticeVO();
+				vo.setNoticeCode(rs.getString("notice_code"));
+				vo.setId(rs.getString("id"));
+				vo.setType(rs.getString("type"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContents(rs.getString("contents"));
+				vo.setEndO(rs.getString("end_o"));
+				vo.setWriteDate(rs.getDate("write_date"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
+	//공지사항 내용 조회
+	public NoticeVO getNoticeInfo(String noticeCode) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from manager_notice where notice_code=?";
+		NoticeVO result = new NoticeVO();
+		
+		conn = JdbcUtill.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeCode);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result.setNoticeCode(rs.getString("notice_code"));
+				result.setId(rs.getString("id"));
+				result.setType(rs.getString("type"));
+				result.setTitle(rs.getString("title"));
+				result.setContents(rs.getString("contents"));
+				result.setEndO(rs.getString("end_o"));
+				result.setWriteDate(rs.getDate("write_date"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
+	
+	//공지사항 인덱스에 몇개만 출력
+	public ArrayList<NoticeVO> getNoticeIndex(String type) {
+		ArrayList<NoticeVO> list = new ArrayList<NoticeVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select ROWNUM, a.* from (SELECT * FROM manager_notice where type=? AND end_o IS null ORDER BY notice_code desc) a where ROWNUM <=9";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				NoticeVO vo = new NoticeVO();
+				vo.setNoticeCode(rs.getString("notice_code"));
+				vo.setType(rs.getString("type"));
+				vo.setTitle(rs.getString("title"));
+				vo.setEndO(rs.getString("end_o"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	public int updateEnd(String noticeCode) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update manager_notice set end_o='O' where notice_code=?";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeCode);
+			
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtill.close(conn, pstmt);
+		}
+		return n;
+	}
+	
+	//멤버리스트
+	public ArrayList<MemberVO> getMemberList() {
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from member ORDER BY name asc";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberVO vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setJoinDate(rs.getDate("join_date"));
+				vo.setLoginDate(rs.getDate("login_date"));
+				vo.setCandy(rs.getInt("candy"));
+				
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+}

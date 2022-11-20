@@ -163,4 +163,41 @@ public class adminDAO {
 		}
 		return n;
 	}
+	
+	//멤버리스트
+	public ArrayList<MemberVO> getMemberList() {
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from member ORDER BY name asc";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberVO vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setJoinDate(rs.getDate("join_date"));
+				vo.setLoginDate(rs.getDate("login_date"));
+				vo.setCandy(rs.getInt("candy"));
+				vo.setPostNum(rs.getInt("post_num"));
+				vo.setCommentNum(rs.getInt("comment_num"));
+				vo.setManager(rs.getString("manager"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
 }

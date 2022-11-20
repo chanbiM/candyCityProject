@@ -51,10 +51,6 @@ public class MemberDAO {
 		conn = JdbcUtill.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(vo.getId());
-			System.out.println(vo.getName());
-			System.out.println(vo.getGender());
-			System.out.println(vo.getPwd());
 			
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getName());

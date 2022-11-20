@@ -49,10 +49,6 @@
 						<td><%= vo.getPostNum() %>개</td>
 					</tr>
 					<tr>
-						<td>댓글 수</td>
-						<td><%= vo.getCommentNum() %>개</td>
-					</tr>
-					<tr>
 						<td>캔디 수</td>
 						<td><%= vo.getCandy() %>개</td>
 					</tr>

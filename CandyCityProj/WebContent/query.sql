@@ -122,20 +122,6 @@ insert into holding_costume values('chanbi', 'cos-5');
 insert into holding_costume values('chanbi', 'cos-11');
 insert into holding_costume values('chanbi', 'cos-7');
 
---댓글
-CREATE TABLE post_comment(
-    comment_code VARCHAR2(20),
-    post_code VARCHAR2(20),
-    id VARCHAR2(20), --쓴사람
-    write_date DATE NOT NULL,
-    contents VARCHAR2(500) NOT NULL,
-    CONSTRAINT comment_code_PK PRIMARY KEY(comment_code),
-    CONSTRAINT comment_post_FK FOREIGN KEY(post_code) REFERENCES post(post_code),
-    CONSTRAINT comment_id_FK FOREIGN KEY(id) REFERENCES member(id)
-);
-DROP TABLE post_comment CASCADE CONSTRAINTS;
-
-
 select * from manager_notice;
 update member set end_o='O' where notice_code='chanbi';
 

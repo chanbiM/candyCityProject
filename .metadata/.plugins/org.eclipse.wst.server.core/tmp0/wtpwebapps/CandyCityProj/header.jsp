@@ -101,9 +101,9 @@
 					MemberVO adminVo = (MemberVO) session.getAttribute("manager");
 					if (adminVo != null) {
 				%>
-				<li><a href="/member/memberList_admin.jsp">관리자용 메뉴</a>
+				<li><a href="/getUserList">관리자용 메뉴</a>
 					<ul class="submenu">
-						<li><a href="#">유저 리스트</a></li>
+						<li><a href="/getUserList">유저 리스트</a></li>
 						<!-- <li><a href="#">문의글 확인</a></li>
 						<li><a href="#">신고글 확인</a></li> -->
 						<li><a href="/admin/noticeInsert.jsp">공지사항/이벤트 작성</a></li>

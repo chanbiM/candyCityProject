@@ -106,14 +106,14 @@
 	if(vo == null) {
 	%>
 		<br><br><br><br>
-		<p style="font-size: 20px;">게시글 수: <%= hompiData.getPostNum() %> &nbsp; 댓글 수: <%= hompiData.getCommentNum() %></p>
+		<p style="font-size: 20px;">게시글 수: <%= hompiData.getPostNum() %></p>
 	<%
 	} else {
 	%>
 		<!--내 홈피일 경우-->
 		<% if(vo.getId().equals(hompiData.getId())) {%>
 			<p style="font-size: 16px;">캔디 수: <%= hompiData.getCandy() %>개</p>
-			<p style="font-size: 16px;">게시글 수: <%= hompiData.getPostNum() %> &nbsp; 댓글 수: <%= hompiData.getCommentNum() %></p>
+			<p style="font-size: 16px;">게시글 수: <%= hompiData.getPostNum() %></p>
 		<button id="post_btn">
 			<a href="/member/post/insertPost.jsp">글쓰기</a>
 		</button><br>

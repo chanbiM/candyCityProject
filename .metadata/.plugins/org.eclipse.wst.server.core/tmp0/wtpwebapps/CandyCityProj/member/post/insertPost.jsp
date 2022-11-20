@@ -11,9 +11,6 @@
                 <div class="right">
                     <ul>
                         <li>
-                            <input type="radio" value="O" name="comment" checked>댓글허용
-                        </li>
-                        <li>
                             <input type="reset" value="삭제">
                             
                         </li>
