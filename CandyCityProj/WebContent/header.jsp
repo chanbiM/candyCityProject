@@ -86,7 +86,7 @@
 					} %>
 					</ul></li>
 
-				<li><a href="#">캔디시티</a>
+				<li><a href="/getCandyCityList">캔디시티</a>
 					<ul class="submenu">
 					</ul></li>
 

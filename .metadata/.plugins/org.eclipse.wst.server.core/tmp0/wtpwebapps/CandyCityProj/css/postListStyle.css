@@ -80,3 +80,63 @@ h2 {
 	margin: auto;
 	
 }
+
+.nickName {
+	width: 1200px;
+}
+
+.candyCity {
+	width: 100%;
+	height: 400px;
+	margin-bottom: 30px;
+	display: flex;
+}
+
+.char img {
+	margin-top: 20px;
+	position: absolute;
+}
+
+
+#candy_back{
+	position: absolute;
+}
+
+.mainList {
+	width: 100%;
+	display: flex;
+	flex-wrap:wrap;
+}
+
+h3 {
+	margin-top: 100px;
+	text-align: center;
+	margin-bottom: 150px;
+}
+.mainList li {
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	
+	
+	
+}
+
+.subList {
+	width: 100%;
+	height: 300px;
+	align-items: center;
+	
+}
+
+.subList li{
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+	height: 300px;
+}
+
+.char_name {
+	height: 50px;
+	z-index: 70;
+}

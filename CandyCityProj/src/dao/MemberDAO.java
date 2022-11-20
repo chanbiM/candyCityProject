@@ -350,6 +350,35 @@ public class MemberDAO {
 		return n;
 		
 	}
+	
+	public ArrayList<MemberVO> getCandyCityList(){
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select ROWNUM, a.* from (SELECT * FROM member where to_date(login_date, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD') ORDER BY login_date desc) a where ROWNUM <= 4";
+		
+		try {
+			conn = JdbcUtill.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberVO vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("테이블 데이터 조회 실패");
+		} finally {
+			 JdbcUtill.close(conn, pstmt, rs);
+		}
+		return list;
+	}
 }
 
 	

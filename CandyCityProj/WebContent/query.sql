@@ -139,3 +139,13 @@ left join (select costume_code from holding_costume where id='chanbi') h
 on h.costume_code=c.costume_code
 where h.costume_code is NULL
 order by costume_name;
+
+select * 
+from   
+where condition order by .col1
+
+--캔디시티(오늘 방문자)
+select ROWNUM, a.* from (SELECT * FROM member where to_date(login_date, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD') ORDER BY login_date desc) a where ROWNUM <= 4
+
+
+
