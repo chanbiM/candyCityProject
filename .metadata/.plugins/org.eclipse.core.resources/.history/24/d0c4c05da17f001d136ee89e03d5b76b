@@ -17,10 +17,10 @@ import vo.PostVO;
 
 
 @WebServlet("/postInsert")
-public class postInsertController extends HttpServlet {
+public class PostInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public postInsertController() {
+    public PostInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
